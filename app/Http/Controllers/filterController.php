@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\DB;
 
 class filterController extends Controller
 {
@@ -14,6 +15,7 @@ class filterController extends Controller
     {
         return view('catalogo');
     }
+
 
     public function filtriPost(Request $request)
     {
@@ -25,13 +27,15 @@ class filterController extends Controller
         /*$ricercaP['ricercaParola']=$request->ricercaParola;*/
         $ricercaA['ricercaAzienda']=$request->ricercaAzienda;
 
-        $azienda=$request->only('idAzienda');
+        // $azienda=$request->only('idAzienda');
         $info=Coupon::where('idAzienda', $ricercaA)->get();
 
+
         if (sizeof($info)!=0){
-            return redirect()-> intended(route('catalogo'));
+            /*return view('catalogo', $data);*/
+            return redirect()-> intended(route('catalogo'))->with('ricercaAzienda',$info,);
         }
-        return redirect(route('home'))->with("Errore", "L'azienda cercata non esiste");
+        return redirect(route('catalogo'))->with("Errore", "L'azienda cercata non esiste");
 
     }
 

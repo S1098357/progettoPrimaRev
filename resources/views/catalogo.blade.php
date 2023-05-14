@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="filtri" class="filtri">
-        <form action="{{route('filtri')}}" method="POST" class="form">
+        <form action="{{route('filtri')}}" method="POST" class="form"> <!-- Tramite la route viene richiamata la funzione filtriPost in metodo post e quindi la ricerca per nome azienda e parole chiave -->
             @csrf
             <p>Barra di ricerca per le parole chiave</p>
             <label>Cerca nome azienda</label>
@@ -22,13 +22,16 @@
     <div id=rectangle>
         <!-- offerta esempio, impostazione iniziale oggetti-->
         <img src="https://www.doctorswork.it/wp-content/uploads/2020/06/img-box-qua-250x253.png" width="100px" height="100px">
-        <p>Nome Coupon: Prova</p>
-        <p>ID offerta: [id]</p>
-        <p>nome azienda</p>
+
+        @if(session()->has('ricercaAzienda'))
+            <div>{{session('ricercaAzienda')[0]['idCoupon']}}</div>
+        @else
+            <div>{{session('Errore')}}</div>
+        @endif
+        <p>Nome Coupon:  </p>
+        <p>ID offerta: </p>
+        <p>Nome Azienda: </p>
         <button>Prendi Offerta</button>
-
-
-
     </div>
     <hr id=spacing>
 @endsection
