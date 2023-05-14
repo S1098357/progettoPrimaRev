@@ -25,10 +25,18 @@
 
         @if(session()->has('ricercaAzienda'))
             <div>{{session('ricercaAzienda')[0]['idCoupon']}}</div>
+            <div>{{session('ricercaAzienda')[0]['idAzienda']}}</div>
+            <div>{{session('ricercaAzienda')[0]['oggetto']}}</div>
+            <div>{{session('ricercaAzienda')[0]['modalità']}}
+            <p>prova</p></div>
+            <div>{{session('ricercaAzienda')[0]['scontistica']}}</div>
+            <div>{{session('ricercaAzienda')[0]['qrCode']}}</div>
+            <div>{{session('ricercaAzienda')[0]['luogoFruizione']}}</div>
+            <div>{{session('ricercaAzienda')[0]['tempoFruizione']}}</div>
         @else
             <div>{{session('Errore')}}</div>
         @endif
-        <p>Nome Coupon:  </p>
+        <p>Nome Coupon: </p>
         <p>ID offerta: </p>
         <p>Nome Azienda: </p>
         <button>Prendi Offerta</button>
