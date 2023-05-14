@@ -42,3 +42,5 @@ Route::post('/filtri', [filterController::class, 'filtriPost'])->name('filtri');
 
 Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
 
+Route::get('/profile', [publicController::class, 'profile'])->name('profile');
+

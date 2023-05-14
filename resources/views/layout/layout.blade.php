@@ -19,7 +19,16 @@
             @include('navItem/onlyRoute', ['route'=>'faq'], ['value'=>'FAQ'])
             @include('navItem/onlyRoute', ['route'=>'login'], ['value'=>'Login'])
             @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
+
+            @if(isset(Auth::user()->nome))
+                @if('Customer'==(Auth::Utente()->tipo)||'Staff'==(Auth::Utente()->tipo))
+                    <!-- Route Chat -->
+                    @include('navItem/onlyRoute', ['route'=>'info'], ['value'=>'info2'])
+                @endif
+            @endif
+
         </div>
+
     </nav>
 </head>
 <br>

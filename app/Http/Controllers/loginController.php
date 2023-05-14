@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Utente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -57,8 +57,8 @@ class loginController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        $user = User::create($data);
-        if (!$user) {
+        $Utente = Utente::create($data);
+        if (!$Utente) {
             return redirect(route('home'))->with("Errore", "Register details are not valid");
         }
         return redirect(route('login'));
