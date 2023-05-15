@@ -24,20 +24,57 @@ class filterController extends Controller
             'ricercaAzienda'
         ]);
 
-        /*$ricercaP['ricercaParola']=$request->ricercaParola;*/
-        $ricercaA['ricercaAzienda']=$request->ricercaAzienda;
+        $ricercaP['ricercaParola']= $request->ricercaParola;
+        $ricercaA['ricercaAzienda'] = $request->ricercaAzienda;
 
         // $azienda=$request->only('idAzienda');
-        $info=Coupon::where('idAzienda', $ricercaA)->get();
+        $info = Coupon::all();
+        $infoAzienda = Coupon::where('idAzienda', $ricercaA)->get();
+        print $infoAzienda;
 
+        $couponPassati = [];
 
-        if (sizeof($info)!=0){
-            /*return view('catalogo', $data);*/
-            return redirect()-> intended(route('catalogo'))->with('ricercaAzienda',$info,);
+        if ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) != 0) {
+            for ($i = 0; $i <= sizeof($infoAzienda)-1; $i++) {
+                if (str_contains($infoAzienda[$i]['oggetto'], $ricercaP['ricercaParola'])) {
+                    array_push($couponPassati, $infoAzienda[$i]);
+                }
+            }
+        }elseif ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) == 0){
+            for ($i = 0; $i <= sizeof($info)-1; $i++) {
+                if (str_contains($info[$i]['oggetto'], $ricercaP['ricercaParola'])) {
+                    array_push($couponPassati, $info[$i]);
+                }
+            }
+        }elseif ($ricercaP['ricercaParola'] == '' and sizeof($infoAzienda) != 0){
+            for ($i = 0; $i <= sizeof($infoAzienda)-1; $i++){
+                array_push($couponPassati, $infoAzienda[$i]);
+            }
         }
-        return redirect(route('catalogo'))->with("Errore", "L'azienda cercata non esiste");
 
+/*
+        if ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) != 0) {
+            foreach ($infoAzienda as $coupon) {
+                if ( str_contains($coupon['oggetto'], $ricercaP['ricercaParola'])) {
+                    array_push($couponPassati, $coupon);
+                }
+            }
+        } elseif ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) == 0) {
+            foreach ($info as $oggetto) {
+                if ( str_contains($oggetto['oggetto'] , $ricercaP['ricercaParola'])) {
+                    array_push($couponPassati, $oggetto);
+                }
+            }
+        } elseif ($ricercaP['ricercaParola'] == '' and sizeof($infoAzienda) != 0) {
+            foreach ($infoAzienda as $oggetto) {
+                array_push($couponPassati, $oggetto);
+            }
+        }*/
+
+        if (sizeof($couponPassati) == 0) {
+            return redirect(route('catalogo'))->with("Errore", "Ricerca qualcosa");
+        } else {
+            return redirect()->intended(route('catalogo'))->with('couponPassati', $couponPassati);
+        }
     }
-
-
 }

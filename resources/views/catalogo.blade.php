@@ -12,6 +12,8 @@
             <p>Barra di ricerca per le parole chiave</p>
             <label>Cerca nome azienda</label>
             <input type="text" name="ricercaAzienda"/>
+            <label>Cerca parola chiave</label>
+            <input type="text" name="ricercaParola"/>
             <input type="submit" value="CERCA">
             <button id=close-button type="button" onclick="document.getElementById('filtri').style.display='none'">X</button>
         </form>
@@ -23,16 +25,17 @@
         <!-- offerta esempio, impostazione iniziale oggetti-->
         <img src="https://www.doctorswork.it/wp-content/uploads/2020/06/img-box-qua-250x253.png" width="100px" height="100px">
 
-        @if(session()->has('ricercaAzienda'))
-            <div>{{session('ricercaAzienda')[0]['idCoupon']}}</div>
-            <div>{{session('ricercaAzienda')[0]['idAzienda']}}</div>
-            <div>{{session('ricercaAzienda')[0]['oggetto']}}</div>
-            <div>{{session('ricercaAzienda')[0]['modalità']}}
-            <p>prova</p></div>
-            <div>{{session('ricercaAzienda')[0]['scontistica']}}</div>
-            <div>{{session('ricercaAzienda')[0]['qrCode']}}</div>
-            <div>{{session('ricercaAzienda')[0]['luogoFruizione']}}</div>
-            <div>{{session('ricercaAzienda')[0]['tempoFruizione']}}</div>
+        @if(session()->has('couponPassati'))
+            @for($i=0;$i<=sizeof(session('couponPassati'))-1;$i++)
+            <div>{{session('couponPassati')[$i]['idCoupon']}}</div>
+            <div>{{session('couponPassati')[$i]['idAzienda']}}</div>
+            <div>{{session('couponPassati')[$i]['oggetto']}}</div>
+            <div>{{session('couponPassati')[$i]['modalità']}}
+            <div>{{session('couponPassati')[$i]['scontistica']}}</div>
+            <div>{{session('couponPassati')[$i]['qrCode']}}</div>
+            <div>{{session('couponPassati')[$i]['luogoFruizione']}}</div>
+            <div>{{session('couponPassati')[$i]['tempoFruizione']}}</div>
+                @endfor
         @else
             <div>{{session('Errore')}}</div>
         @endif
