@@ -30,12 +30,12 @@
             <div>{{session('couponPassati')[$i]['idCoupon']}}</div>
             <div>{{session('couponPassati')[$i]['idAzienda']}}</div>
             <div>{{session('couponPassati')[$i]['oggetto']}}</div>
-            <div>{{session('couponPassati')[$i]['modalità']}}
+                <div>{{session('couponPassati')[$i]['modalità']}}</div>
             <div>{{session('couponPassati')[$i]['scontistica']}}</div>
             <div>{{session('couponPassati')[$i]['qrCode']}}</div>
             <div>{{session('couponPassati')[$i]['luogoFruizione']}}</div>
             <div>{{session('couponPassati')[$i]['tempoFruizione']}}</div>
-                @endfor
+            @endfor
         @else
             <div>{{session('Errore')}}</div>
         @endif
