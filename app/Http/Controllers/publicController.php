@@ -35,4 +35,9 @@ class publicController extends Controller{
     public function modificaProfilo(){
         return view('modificaProfilo');
     }
+
+    public function logout(){
+        return view('home');
+    }
+
 }

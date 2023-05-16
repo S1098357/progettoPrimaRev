@@ -43,7 +43,9 @@ Route::post('/filtri', [filterController::class, 'filtriPost'])->name('filtri');
 
 Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
 
-Route::get('/profile', [publicController::class, 'profile'])->name('profile');
+Route::get('/profile', [publicController::class, 'profile'])->name('Profile');
 
 Route::get('/modificaProfilo', [publicController::class, 'modificaProfilo'])->name('modificaProfilo');
+
+Route::get('/Logout', [publicController::class, 'logout'])->name('Logout');
 

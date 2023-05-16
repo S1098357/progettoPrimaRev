@@ -17,12 +17,17 @@
             @include('navItem/onlyRoute', ['route'=>'catalogo'], ['value'=>'Catalogo'])
             @include('navItem/onlyRoute', ['route'=>'info'], ['value'=>'Info Aziende'])
             @include('navItem/onlyRoute', ['route'=>'faq'], ['value'=>'FAQ'])
-            @include('navItem/onlyRoute', ['route'=>'login'], ['value'=>'Login'])
-            @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
+
+            @if(!Auth::check())
+                @include('navItem/onlyRoute', ['route'=>'login'], ['value'=>'Login'])
+                @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
+            @endif
 
             @if(isset(Auth::User()->nome))
                 @if((Auth::User()->role)=='user')
-                    @include('navItem/onlyRoute', ['route'=>'profile'], ['value'=>'profile'])
+                    @include('navItem/onlyRoute', ['route'=>'Profile'], ['value'=>'Profilo'])
+                    @include('navItem/onlyRoute', ['route'=>'modificaProfilo'], ['value'=>'Modifica Profilo'])
+                    @include('navItem/onlyRoute', ['route'=>'Logout'], ['value'=>'Logout'])
                 @endif
             @endif
 
