@@ -17,13 +17,13 @@
 }
 
 #filter-button {
+    margin-bottom: 50px;
     width: 250px;
     height: 50px;
     font-size: large;
     font-weight: bold;
-    position: relative;
-    top: 30px;
-    left: 143px;
+    z-index: -1;
+    margin-top: 50px;
 }
 
 #close-button{
@@ -39,4 +39,16 @@
 #spacing{
     visibility: hidden;
     height: 30px;
+}
+
+.offerta{
+    background-color: #76b718;
+    color: #f2f2f2;
+    margin-right: 30px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 30px;
 }

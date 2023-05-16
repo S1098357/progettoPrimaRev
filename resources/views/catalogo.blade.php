@@ -18,32 +18,42 @@
             <button id=close-button type="button" onclick="document.getElementById('filtri').style.display='none'">X</button>
         </form>
     </div>
-
-    <button id=filter-button type="button" onclick="document.getElementById('filtri').style.display='block'">FILTRI</button>
-    <hr id=spacing>
-    <div id=rectangle>
+        <button id=filter-button type="button" onclick="document.getElementById('filtri').style.display='block'">FILTRI</button>
         <!-- offerta esempio, impostazione iniziale oggetti-->
-        <img src="https://www.doctorswork.it/wp-content/uploads/2020/06/img-box-qua-250x253.png" width="100px" height="100px">
-
+    <br>
         @if(session()->has('couponPassati'))
             @for($i=0;$i<=sizeof(session('couponPassati'))-1;$i++)
-            <div>{{session('couponPassati')[$i]['idCoupon']}}</div>
-            <div>{{session('couponPassati')[$i]['idAzienda']}}</div>
-            <div>{{session('couponPassati')[$i]['oggetto']}}</div>
-                <div>{{session('couponPassati')[$i]['modalità']}}</div>
-            <div>{{session('couponPassati')[$i]['scontistica']}}</div>
-            <div>{{session('couponPassati')[$i]['qrCode']}}</div>
-            <div>{{session('couponPassati')[$i]['luogoFruizione']}}</div>
-            <div>{{session('couponPassati')[$i]['tempoFruizione']}}</div>
+                <div class="offerta">
+                    <div><p>Nome Offerta:{{session('couponPassati')[$i]['idCoupon']}}</p></div>
+                    <div><p>Azienda: {{session('couponPassati')[$i]['idAzienda']}}</p></div>
+                    <div><p>Descrizione offerta:{{session('couponPassati')[$i]['oggetto']}}</p></div>
+                    <div><p>Modalità offerta: {{session('couponPassati')[$i]['modalità']}}</p></div>
+                    <div><p>Sconto: {{session('couponPassati')[$i]['scontistica']}}</p></div>
+                    <div><p>QrCode: {{session('couponPassati')[$i]['qrCode']}}</p></div>
+                    <div><p>Usufruibile presso: {{session('couponPassati')[$i]['luogoFruizione']}}</p></div>
+                    <div><p>Nel periodo: {{session('couponPassati')[$i]['tempoFruizione']}}</p></div>
+                </div>
             @endfor
-        @else
+        @elseif(session()->has('Errore'))
             <div>{{session('Errore')}}</div>
+        @else
+            <?php $info = \App\Models\Coupon::all(); ?>
+            @for($i=0;$i<=sizeof($info)-1;$i++)
+                <div class="offerta">
+                    <div><p>Nome Offerta:{{$info[$i]['idCoupon']}}</p></div>
+                    <div><p>Azienda: {{$info[$i]['idAzienda']}}</p></div>
+                    <div><p>Descrizione offerta:{{$info[$i]['oggetto']}}</p></div>
+                    <div><p>Modalità offerta: {{$info[$i]['modalità']}}</p></div>
+                    <div><p>Sconto: {{$info[$i]['scontistica']}}</p></div>
+                    <div><p>QrCode: {{$info[$i]['qrCode']}}</p></div>
+                    <div><p>Usufruibile presso: {{$info[$i]['luogoFruizione']}}</p></div>
+                    <div><p>Nel periodo: {{$info[$i]['tempoFruizione']}}</p></div>
+                </div>
+            @endfor
         @endif
-        <p>Nome Coupon: </p>
-        <p>ID offerta: </p>
-        <p>Nome Azienda: </p>
-        <button>Prendi Offerta</button>
-    </div>
-    <hr id=spacing>
+    <br>
+    <br>
+    <br>
+    <br>
 @endsection
 </html>
