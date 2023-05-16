@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,19 +24,36 @@ class loginController extends Controller
         return view('signup');
     }
 
-    function loginPost(Request $request):RedirectResponse
+    function loginPost(LoginRequest $request)
     {
-        $credential=$request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+        $request->authenticate();
 
-        if (Auth::attempt($credential)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('home'));
+        $request->session()->regenerate();
+
+        /**
+         * Redirezione su diverse Home Page in base alla classe d'utenza.
+         */
+//        return redirect()->intended(RouteServiceProvider::HOME);
+
+        $role = auth()->user()->role;
+        switch ($role) {
+            case 'admin': return redirect()->route('admin');
+                break;
+            case 'user': return redirect()->route('home');
+                break;
+            default: return redirect('catalogo');
         }
-        return redirect(route('login'))->with("Errore", "Login details are not valid");
 
+    }
+
+    public function destroy(Request $request) {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     function signupPost(Request $request)
@@ -58,11 +77,17 @@ class loginController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        $User = User::create($data);
-        if (!$User) {
-            return redirect(route('home'))->with("Errore", "Register details are not valid");
+        $user = User::create($data);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        if (!$user) {
+            return redirect(route('signup'))->with("Errore", "Register details are not valid");
         }
-        return redirect(route('login'));
+        return redirect(route('home'));
+
     }
 
     function logout()

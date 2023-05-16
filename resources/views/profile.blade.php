@@ -8,15 +8,15 @@
 
     @if(Auth::check())
 
-    {{$utente=Auth::user()}}
+        {{$utente=Auth::user()}}
 
-    <title>Visualizza Profilo</title>
-    <h1>Il Mio Profilo</h1>
-    <p>Benvenuto nel tuo profilo personale!</p>
-    <table>
-        <tr>
-            <th>Username:</th>
-            <td>{{$utente['username']}}</td>
+        <title>Visualizza Profilo</title>
+        <h1>Il Mio Profilo</h1>
+        <p>Benvenuto nel tuo profilo personale!</p>
+        <table>
+            <tr>
+                <th>Username:</th>
+                <td>{{$utente['username']}}</td>
         </tr>
         <tr>
             <th>Email:</th>
