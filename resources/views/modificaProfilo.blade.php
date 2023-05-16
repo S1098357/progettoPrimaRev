@@ -10,19 +10,19 @@
     <center><form>
         <h2>Modifica i tuoi dati personali</h2>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username">{{$utente['username']}}<br><br>
+        <input type="text" id="username" name="username" placeholder="{{$utente['username']}}"><br><br>
         <label for="username">Password:</label>
-        <input type="text" id="password" name="password">{{$utente['password']}}<br><br>
+        <input type="text" id="password" name="password"><br><br>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email">{{$utente['email']}}<br><br>
+        <input type="email" id="email" name="email" placeholder="{{$utente['email']}}"><br><br>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome">{{$utente['nome']}}<br><br>
+        <input type="text" id="nome" name="nome" placeholder=" {{$utente['nome']}}"><br><br>
         <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome">{{$utente['cognome']}}<br><br>
+        <input type="text" id="cognome" name="cognome" placeholder="{{$utente['cognome']}}"><br><br>
         <label for="telefono">Telefono:</label>
-        <input type="tel" id="telefono" name="telefono">{{$utente['telefono']}}<br><br>
+        <input type="tel" id="telefono" name="telefono" placeholder="{{$utente['telefono']}}"><br><br>
         <label for="datadinascita">Data di nascita:</label>
-        <input type="date" id="datadinascita" name="datadinascita">{{$utente['datadinascita']}}<br><br>
+        <input type="date" id="datadinascita" name="datadinascita" placeholder="{{$utente['datadinascita']}}"><br><br>
         <label for="genere">Genere:</label>
         <select id="genere" name="genere">
             <option value="maschio">Maschio</option>
