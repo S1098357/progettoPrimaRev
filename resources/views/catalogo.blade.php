@@ -36,13 +36,21 @@
             <div>{{session('couponPassati')[$i]['luogoFruizione']}}</div>
             <div>{{session('couponPassati')[$i]['tempoFruizione']}}</div>
             @endfor
-        @else
+        @elseif(session()->has('Errore'))
             <div>{{session('Errore')}}</div>
+        @else
+            <?php $info = \App\Models\Coupon::all(); ?>
+            @for($i=0;$i<=sizeof($info)-1;$i++)
+                <div>{{$info[$i]['idCoupon']}}</div>
+                <div>{{$info[$i]['idAzienda']}}</div>
+                <div>{{$info[$i]['oggetto']}}</div>
+                <div>{{$info[$i]['modalità']}}</div>
+                <div>{{$info[$i]['scontistica']}}</div>
+                <div>{{$info[$i]['qrCode']}}</div>
+                <div>{{$info[$i]['luogoFruizione']}}</div>
+                <div>{{$info[$i]['tempoFruizione']}}</div>
+            @endfor
         @endif
-        <p>Nome Coupon: </p>
-        <p>ID offerta: </p>
-        <p>Nome Azienda: </p>
-        <button>Prendi Offerta</button>
     </div>
     <hr id=spacing>
 @endsection

@@ -3,6 +3,7 @@
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\publicController;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
 
 /*
