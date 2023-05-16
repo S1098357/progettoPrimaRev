@@ -35,7 +35,7 @@
                 </div>
             @endfor
         @elseif(session()->has('Errore'))
-            <div>{{session('Errore')}}</div>
+            <center><div class="errore">{{session('Errore')}}</div></center>
         @else
             <?php $info = \App\Models\Coupon::all(); ?>
             @for($i=0;$i<=sizeof($info)-1;$i++)

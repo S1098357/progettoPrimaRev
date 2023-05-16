@@ -72,7 +72,7 @@ class filterController extends Controller
         }*/
 
         if (sizeof($couponPassati) == 0) {
-            return redirect(route('catalogo'))->with("Errore", "Ricerca qualcosa");
+            return redirect(route('catalogo'))->with("Errore", "ERRORE, LA RICERCA EFFETTUATA NON HA PRODOTTO RISULTATI VALIDI");
         } else {
             return redirect()->intended(route('catalogo'))->with('couponPassati', $couponPassati);
         }

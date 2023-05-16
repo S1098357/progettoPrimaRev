@@ -18,12 +18,12 @@
 
 #filter-button {
     margin-bottom: 50px;
+    margin-top: 50px;
     width: 250px;
     height: 50px;
     font-size: large;
     font-weight: bold;
     z-index: -1;
-    margin-top: 50px;
 }
 
 #close-button{
@@ -51,4 +51,9 @@
     padding: 14px 16px;
     border-radius: 10px;
     margin-bottom: 30px;
+}
+
+.errore{
+    font-size: 30px;
+    color: green;
 }
