@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('cognome');
             $table->string('genere');
+            $table->string('tipo');
         });
 
 

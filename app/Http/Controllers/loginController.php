@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Utente;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,15 +22,15 @@ class loginController extends Controller
         return view('signup');
     }
 
-    function loginPost(Request $request)
+    function loginPost(Request $request):RedirectResponse
     {
-        $request->validate([
+        $credential=$request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        $credential = $request->only('username', 'password');
         if (Auth::attempt($credential)) {
+            $request->session()->regenerate();
             return redirect()->intended(route('home'));
         }
         return redirect(route('login'))->with("Errore", "Login details are not valid");
@@ -57,8 +58,8 @@ class loginController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        $Utente = Utente::create($data);
-        if (!$Utente) {
+        $User = User::create($data);
+        if (!$User) {
             return redirect(route('home'))->with("Errore", "Register details are not valid");
         }
         return redirect(route('login'));

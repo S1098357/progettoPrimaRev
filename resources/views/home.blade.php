@@ -21,9 +21,8 @@
 
     </div>
 
-
-
 @endsection
+
 
 </html>
 
