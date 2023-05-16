@@ -5,8 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{{URL('css\profile.css') }}">
 @section('content')
 
-    @if(Auth::check())
-        {{$utente=Auth::user()}}
+    @if($utente=Auth::user())
 
     <center><form>
         <h2>Modifica i tuoi dati personali</h2>

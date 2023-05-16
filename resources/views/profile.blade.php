@@ -6,9 +6,7 @@
 @section('content')
 
 
-    @if(Auth::check())
-
-        {{$utente=Auth::user()}}
+    @if($utente=Auth::user())
 
         <title>Visualizza Profilo</title>
         <h1>Il Mio Profilo</h1>
