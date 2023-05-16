@@ -21,7 +21,7 @@
             @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
 
             @if(isset(Auth::User()->nome))
-                @if((Auth::User()->tipo)=='User')
+                @if((Auth::User()->role)=='user')
                     @include('navItem/onlyRoute', ['route'=>'profile'], ['value'=>'profile'])
                 @endif
             @endif
