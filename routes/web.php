@@ -45,3 +45,5 @@ Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
 
 Route::get('/profile', [publicController::class, 'profile'])->name('profile');
 
+Route::get('/modificaProfilo', [publicController::class, 'modificaProfilo'])->name('modificaProfilo');
+
