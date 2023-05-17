@@ -7,7 +7,8 @@
 
     @if($utente=Auth::user())
 
-    <center><form>
+    <center><form action="{{route('modificaProfiloPost')}}" method="POST" class="form">
+            @csrf
         <h2>Modifica i tuoi dati personali</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="{{$utente['username']}}"><br><br>
@@ -29,7 +30,7 @@
             <option value="femmina">Femmina</option>
             <option value="altro">Altro</option>
         </select><br><br>
-        <button type="submit">Salva Modifiche</button>
+        <input type="submit" value="Salva Modifiche">
     </form></center>
 @endif
 @endsection

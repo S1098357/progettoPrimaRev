@@ -52,25 +52,6 @@ class filterController extends Controller
             }
         }
 
-/*
-        if ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) != 0) {
-            foreach ($infoAzienda as $coupon) {
-                if ( str_contains($coupon['oggetto'], $ricercaP['ricercaParola'])) {
-                    array_push($couponPassati, $coupon);
-                }
-            }
-        } elseif ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) == 0) {
-            foreach ($info as $oggetto) {
-                if ( str_contains($oggetto['oggetto'] , $ricercaP['ricercaParola'])) {
-                    array_push($couponPassati, $oggetto);
-                }
-            }
-        } elseif ($ricercaP['ricercaParola'] == '' and sizeof($infoAzienda) != 0) {
-            foreach ($infoAzienda as $oggetto) {
-                array_push($couponPassati, $oggetto);
-            }
-        }*/
-
         if (sizeof($couponPassati) == 0) {
             return redirect(route('catalogo'))->with("Errore", "ERRORE, LA RICERCA EFFETTUATA NON HA PRODOTTO RISULTATI VALIDI");
         } else {

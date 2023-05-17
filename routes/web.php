@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\publicController;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,6 @@ Route::get('/test', [publicController::class, 'test'])->name('test');
 
 Route::get('/catalogo', [publicController::class, 'catalogo'])->name('catalogo');
 
-
 Route::get('/info', [publicController::class, 'info'])->name('info');
 Route::get('/faq', [publicController::class, 'faq'])->name('faq');
 
@@ -38,14 +38,15 @@ Route::post('/signup', [loginController::class, 'signupPost'])->name('signupPost
 
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
-
 Route::post('/filtri', [filterController::class, 'filtriPost'])->name('filtri');
 
 Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
 
 Route::get('/profile', [publicController::class, 'profile'])->name('Profile');
 
-Route::get('/modificaProfilo', [publicController::class, 'modificaProfilo'])->name('modificaProfilo');
+Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo');
 
 Route::get('/Logout', [publicController::class, 'logout'])->name('Logout');
+
+Route::post('/modificaProfilo', [profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
 
