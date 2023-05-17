@@ -27,8 +27,8 @@
                 @if((Auth::User()->role)=='user')
                     @include('navItem/onlyRoute', ['route'=>'Profile'], ['value'=>'Profilo'])
                     @include('navItem/onlyRoute', ['route'=>'modificaProfilo'], ['value'=>'Modifica Profilo'])
-                    @include('navItem/onlyRoute', ['route'=>'Logout'], ['value'=>'Logout'])
                 @endif
+                @include('navItem/logout')
             @endif
 
         </div>

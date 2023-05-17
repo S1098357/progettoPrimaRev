@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -90,11 +91,11 @@ class loginController extends Controller
 
     }
 
-    function logout()
-    {
-        \Illuminate\Support\Facades\Session::flush();
+    function logout(Request $request):RedirectResponse{
         Auth::logout();
-        return redirect(route('logout'));
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('home'));
     }
 
 }
