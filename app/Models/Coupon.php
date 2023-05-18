@@ -18,6 +18,9 @@ class Coupon extends Model
     public function appartenenzaAzienda(){
         return $this->belongsTo('app\Models\Azienda', 'idAzienda');
     }
+
+    public $timestamps = false;
+
 }
 
 

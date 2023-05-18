@@ -55,3 +55,6 @@ Route::get('/promozioni', [publicController::class, 'Promozioni'])->name('Promoz
 
 Route::post('/visualizzaPromozione', [promozioniController::class, 'visualizzaPromozione'])->name('visualizzaPromozione');
 
+Route::post('/creaPromozione', [promozioniController::class, 'creaPromozione'])->name('creaPromozione');
+
+Route::post('/creaPromozionePost', [promozioniController::class, 'creaPromozionePost'])->name('creaPromozionePost');

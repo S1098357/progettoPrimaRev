@@ -2,7 +2,7 @@
 <html>
 @extends('layout.layout')
 @section('customCss')
-    <link rel="stylesheet" type="text/css" href="{{URL('css\promozioni.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\visualizzaPromozione.css') }}">
 @endsection
 
 @section('content')

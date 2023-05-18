@@ -21,8 +21,9 @@
     margin-bottom: 30px;
 }
 
-.aggiungiOfferta{
-    height: 100px;
+.aggiungiOfferta button{
+    height: 180px;
+    width: 1490px;
     font-size: 100px;
     text-align: center;
     margin-top: 50px;

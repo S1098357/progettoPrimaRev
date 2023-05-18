@@ -22,8 +22,10 @@
             </div>
         </form>
     @endfor
-
-    <div class="aggiungiOfferta">+</div>
+    <form action="{{route('creaPromozione')}}" method="POST" class="form">
+        @csrf
+        <div class="aggiungiOfferta"><button type="submit">+</button></div>
+    </form>
 
 @endsection
 </html>

@@ -23,7 +23,8 @@ class profileController extends Controller
             'nome',
             'cognome',
             'telefono',
-            'datadinascita'
+            'datadinascita',
+            'genere'
         ]);
 
         $data['username'] = $request->username;
@@ -33,7 +34,7 @@ class profileController extends Controller
         $data['cognome'] = $request->cognome;
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
-        $data['genere']=Auth::user()->genere;
+        $data['genere'] = $request->genere;
         $data['role']=Auth::user()->role;
 
 
@@ -45,6 +46,7 @@ class profileController extends Controller
         Auth::user()->cognome=$data['cognome'];
         Auth::user()->telefono=$data['telefono'];
         Auth::user()->datadinascita=$data['datadinascita'];
+        Auth::user()->genere=$data['genere'];
 
         Auth::user()->save();
 
