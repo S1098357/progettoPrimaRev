@@ -3,6 +3,7 @@
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\promozioniController;
 use App\Http\Controllers\publicController;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +50,8 @@ Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->n
 Route::get('/Logout', [publicController::class, 'logout'])->name('Logout');
 
 Route::post('/modificaProfilo', [profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
+
+Route::get('/promozioni', [publicController::class, 'Promozioni'])->name('Promozioni');
+
+Route::post('/visualizzaPromozione', [promozioniController::class, 'visualizzaPromozione'])->name('visualizzaPromozione');
 

@@ -36,4 +36,8 @@ class publicController extends Controller{
         return view('home');
     }
 
+    public function Promozioni(){
+        return view('promozioni');
+    }
+
 }
