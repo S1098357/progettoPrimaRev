@@ -17,7 +17,7 @@
                 <div><p id="oggetto"> Oggetto offerta: {{$info[$i]['oggetto']}} </p></div>
                 <div class="nomeCoupon"> <input name="idCoupon" value="{{$info[$i]['idCoupon']}}"></div>
                 <div>
-                    <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('visualizzaPromozionePost')}}"> </div>
+                    <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('modificaPromozionePost')}}"> </div>
                     <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaPromozionePost')}}"> </div>
                 </div>
             </div>

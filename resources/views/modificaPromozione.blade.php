@@ -2,33 +2,34 @@
 <html>
 @extends('layout.layout')
 @section('customCss')
-    <link rel="stylesheet" type="text/css" href="{{URL('css\creaPromozione.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\modificaPromozione.css') }}">
 @endsection
 
 @section('content')
 
-    <center><form method="POST" class="form">
-            @csrf
+    @if(session()->has('promozione'))
 
-            <label for="idCoupon">Nome Offerta: </label>
-            <input type="text" id="idCoupon" name="idCoupon"><br><br>
-            <label for="oggetto">Oggetto:</label>
-            <input type="text" id="oggetto" name="oggetto"><br><br>
-            <label for="modalità">modalità:</label>
-            <input type="text" id="modalità" name="modalità"><br><br>
-            <label for="scontistica">Scontistica:</label>
-            <input type="text" id="scontistica" name="scontistica"><br><br>
-            <label for="luogoFruizione">Luogo fruizione:</label>
-            <input type="text" id="luogoFruizione" name="luogoFruizione"><br><br>
-            <label for="Azienda">Azienda: </label>
-            <select id="Azienda" name="Azienda">
-                <option value="Azienda 1">Azienda 1</option>
-                <option value="Azienda 2">Azienda 2</option>
-                <option value="Azienda 3">Azienda 3</option>
-            </select><br><br>
-            <input type="submit" value="Salva Modifiche" formaction="{{route('modificaPromozione')}}">
-            <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione')}}">
-        </form></center>
+        <center><form method="POST" class="form">
+                @csrf
+                <h2>Modifica i dati della promozione {{session('promozione')['idCoupon']}}</h2>
+                <div class="nomeCoupon"> <input name="idCoupon" value="{{session('promozione')['idCoupon']}}"></div>
+                <label for="oggetto">Oggetto:</label>
+                <input type="text" id="oggetto" name="oggetto" value="{{session('promozione')['oggetto']}}"><br><br>
+                <label for="modalità">Modalità:</label>
+                <input type="text" id="modalità" name="modalità" value="{{session('promozione')['modalità']}}"><br><br>
+                <label for="scontistica">Scontistica:</label>
+                <input type="text" id="scontistica" name="scontistica" value="{{session('promozione')['scontistica']}}"><br><br>
+                <label for="luogoFruizione">Luogo fruizione:</label>
+                <input type="text" id="luogoFruizione" name="luogoFruizione" value="{{session('promozione')['luogoFruizione']}}"><br><br>
+                <select id="Azienda" name="Azienda">
+                    <option value="Azienda1">Azienda1</option>
+                    <option value="Azienda2">Azienda2</option>
+                    <option value="Azienda3">Azienda3</option>
+                </select><br><br>
+                <input type="submit" value="Salva Modifiche" formaction="{{route('modificaPromozioneFinale')}}">
+                <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione')}}">
+            </form></center>
+    @endif
 
 @endsection
 </html>

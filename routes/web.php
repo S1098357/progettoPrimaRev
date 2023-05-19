@@ -60,3 +60,13 @@ Route::post('/visualizzaPromozionePost', [promozioniController::class, 'visualiz
 Route::post('/creaPromozione', [promozioniController::class, 'creaPromozione'])->name('creaPromozione');
 
 Route::post('/creaPromozionePost', [promozioniController::class, 'creaPromozionePost'])->name('creaPromozionePost');
+
+Route::get('/modificaPromozione', [promozioniController::class, 'modificaPromozione'])->name('modificaPromozione');
+
+Route::post('/modificaPromozionePost', [promozioniController::class, 'modificaPromozionePost'])->name('modificaPromozionePost');
+
+Route::post('/eliminaPromozione', [promozioniController::class, 'eliminaPromozione'])->name('eliminaPromozione');
+
+Route::post('/modificaPromozioneFinale', [promozioniController::class, 'modificaPromozioneFinale'])->name('modificaPromozioneFinale');
+
+
