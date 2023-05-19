@@ -103,7 +103,7 @@ class promozioniController extends Controller
         $data['qrCode']='prova';
         $data['tempoFruizione']='2h';
 
-        Coupon::destroy($data['idCoupon']);
+        Coupon::where('idCoupon',$data['idCoupon'])->delete();
         $Coupon= Coupon::create($data);
 
         return redirect(route('Promozioni'));
@@ -118,7 +118,7 @@ class promozioniController extends Controller
 
         $data['idCoupon'] = $request->idCoupon;
 
-        Coupon::destroy($data['idCoupon']);
+        Coupon::where('idCoupon',$data['idCoupon'])->delete();
 
         return redirect(route('Promozioni'));
     }
