@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <center><form action="{{route('creaPromozionePost')}}" method="POST" class="form">
+    <center><form method="POST" class="form">
             @csrf
 
             <label for="idCoupon">Nome Offerta: </label>
@@ -26,7 +26,8 @@
                 <option value="Azienda 2">Azienda 2</option>
                 <option value="Azienda 3">Azienda 3</option>
             </select><br><br>
-    <input type="submit" value="CREA">
+            <input type="submit" value="Salva Modifiche" formaction="{{route('modificaPromozione')}}">
+            <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione')}}">
         </form></center>
 
 @endsection

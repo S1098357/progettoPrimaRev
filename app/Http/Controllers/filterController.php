@@ -30,7 +30,6 @@ class filterController extends Controller
         // $azienda=$request->only('idAzienda');
         $info = Coupon::all();
         $infoAzienda = Coupon::where('idAzienda', $ricercaA)->get();
-        print $infoAzienda;
 
         $couponPassati = [];
 

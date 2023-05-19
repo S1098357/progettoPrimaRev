@@ -13,11 +13,12 @@
         <form action="{{route('Promozioni')}}" method="POST" class="form">
             @csrf
             <div class="promozione">
-                <div><p> Nome offerta: {{$info[$i]['idCoupon']}} </p></div>
-                <div><p> Oggetto offerta: {{$info[$i]['oggetto']}} </p></div>
+                <div><p id="idCoupon"> Nome offerta: {{$info[$i]['idCoupon']}} </p></div>
+                <div><p id="oggetto"> Oggetto offerta: {{$info[$i]['oggetto']}} </p></div>
+                <div class="nomeCoupon"> <input name="idCoupon" value="{{$info[$i]['idCoupon']}}"></div>
                 <div>
-                    <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('visualizzaPromozione')}}"> </div>
-                    <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaPromozione')}}"> </div>
+                    <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('visualizzaPromozionePost')}}"> </div>
+                    <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaPromozionePost')}}"> </div>
                 </div>
             </div>
         </form>

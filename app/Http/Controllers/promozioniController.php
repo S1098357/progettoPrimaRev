@@ -12,9 +12,22 @@ class promozioniController extends Controller
         return view('promozioni');
     }
 
-    public function visualizzaPromozione()
+    public function visualizzaPromozionePost(Request $request)
     {
-        return view('visualizzaPromozione');
+        $request->validate(['idCoupon']);
+
+        $data['idCoupon'] = $request->idCoupon;
+
+        $info = Coupon::all();
+        $couponRichiesto = $info[0];
+
+        for ($i = 0; $i <= sizeof($info)-1; $i++) {
+            if ($info[$i]['idCoupon']==$data['idCoupon']) {
+                $couponRichiesto=$info[$i];
+            }
+        }
+
+        return redirect()->intended(route('visualizzaPromozione'))->with('couponRichiesto', $couponRichiesto);
     }
 
     public function creaPromozione()
@@ -46,7 +59,8 @@ class promozioniController extends Controller
 
         return redirect(route('Promozioni'));
 
-
-
     }
+
+
+
 }

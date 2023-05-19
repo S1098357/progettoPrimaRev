@@ -40,4 +40,9 @@ class publicController extends Controller{
         return view('promozioni');
     }
 
+    public function visualizzaPromozione()
+    {
+        return view('visualizzaPromozione');
+    }
+
 }

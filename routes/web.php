@@ -53,7 +53,9 @@ Route::post('/modificaProfilo', [profileController::class, 'modificaProfiloPost'
 
 Route::get('/promozioni', [publicController::class, 'Promozioni'])->name('Promozioni');
 
-Route::post('/visualizzaPromozione', [promozioniController::class, 'visualizzaPromozione'])->name('visualizzaPromozione');
+Route::get('/visualizzaPromozione', [publicController::class, 'visualizzaPromozione'])->name('visualizzaPromozione');
+
+Route::post('/visualizzaPromozionePost', [promozioniController::class, 'visualizzaPromozionePost'])->name('visualizzaPromozionePost');
 
 Route::post('/creaPromozione', [promozioniController::class, 'creaPromozione'])->name('creaPromozione');
 
