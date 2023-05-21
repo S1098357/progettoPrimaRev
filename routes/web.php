@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\aziendaController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
@@ -69,4 +70,5 @@ Route::post('/eliminaPromozione', [promozioniController::class, 'eliminaPromozio
 
 Route::post('/modificaPromozioneFinale', [promozioniController::class, 'modificaPromozioneFinale'])->name('modificaPromozioneFinale');
 
+Route::get('/listaAziende', [aziendaController::class, 'listaAziende'])->name('listaAziende');
 
