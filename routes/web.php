@@ -72,3 +72,22 @@ Route::post('/modificaPromozioneFinale', [promozioniController::class, 'modifica
 
 Route::get('/listaAziende', [aziendaController::class, 'listaAziende'])->name('listaAziende');
 
+Route::get('/listaAziendePost', [aziendaController::class, 'listaAziendePost'])->name('listaAziendePost');
+
+Route::post('/modificaAziendaPost', [aziendaController::class, 'modificaAziendaPost'])->name('modificaAziendaPost');
+
+Route::get('/modificaAzienda', [aziendaController::class, 'modificaAzienda'])->name('modificaAzienda');
+
+Route::post('/modificaAziendaFinale', [aziendaController::class, 'modificaAziendaFinale'])->name('modificaAziendaFinale');
+
+Route::post('/creaAzienda', [aziendaController::class, 'creaAzienda'])->name('creaAzienda');
+
+Route::post('/creaAziendaPost', [aziendaController::class, 'creaAziendaPost'])->name('creaAziendaPost');
+
+Route::get('/visualizzaAzienda', [aziendaController::class, 'visualizzaAzienda'])->name('visualizzaAzienda');
+
+Route::post('/visualizzaAziendaPost', [aziendaController::class, 'visualizzaAziendaPost'])->name('visualizzaAziendaPost');
+
+Route::post('/eliminaAzienda', [aziendaController::class, 'eliminaAzienda'])->name('eliminaAzienda');
+
+

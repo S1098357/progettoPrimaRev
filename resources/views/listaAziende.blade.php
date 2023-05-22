@@ -10,17 +10,18 @@
 
     <ul>
         @for($i=0;$i<=sizeof($info)-1;$i++)
-            <form action="{{route('Promozioni')}}" method="POST" class="form">
+            <form method="POST" class="form">
                 @csrf
         <div class="lista-aziende">
             <li>
-                <div class="nomeAzienda"> <input name="nomeAzienda" value="{{$info[$i]['nomeAzienda']}}"> </div>
-                <img  {{$info[$i]['logo']}} height="200"width="200">
+                <div class="nomeAzienda"> <input name="id" value="{{$info[$i]['id']}}"> </div>
+                <img  src={{URL($info[$i]['logo'])}} height="200"width="200">
                 <div class="testolista"> {{$info[$i]['descrizioneAzienda']}}</div>
                 <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('modificaAziendaPost')}}"> </div>
                 <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaAziendaPost')}}"> </div>
             </li>
         </div>
+            </form>
         @endfor
     </ul>
 

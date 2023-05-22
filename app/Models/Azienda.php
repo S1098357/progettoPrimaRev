@@ -6,20 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Azienda extends Model
 {
-    protected $table = 'Azienda';
+    protected $table = 'aziendas';
 
     protected $fillable = [
-        'id', 'ragioneSociale', 'localizzazione',
+        'ragioneSociale', 'localizzazione',
         'nomeAzienda', 'logo',
         'tipologia', 'descrizioneAzienda'
     ];
+
+    public $timestamps = false;
 }
-/*
 
-  instradamento
-
-
- public function appartenenzaAzienda(){
-        return $this->belongsTo('app\Models\Azienda', 'id');
-    }
- */
