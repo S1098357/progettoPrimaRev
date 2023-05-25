@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\aziendaController;
 use App\Http\Controllers\aziendaControllerDiego;
+use App\Http\Controllers\faqController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
@@ -91,7 +92,11 @@ Route::post('/visualizzaAziendaPost', [aziendaController::class, 'visualizzaAzie
 
 Route::post('/eliminaAzienda', [aziendaController::class, 'eliminaAzienda'])->name('eliminaAzienda');
 
-
+Route::get('/faq', [publicController::class, 'faq'])->name('faq');
+Route::get('/faqedit/{id}', [faqController::class, 'faqedit'])->name('faqedit')->middleware('auth');
+Route::get('/faqdelete/{id}', [faqController::class, 'faqdelete'])->name('faqdelete')->middleware('auth');
+Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')->middleware('auth');
+Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('auth');
 
 
 

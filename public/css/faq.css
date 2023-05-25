@@ -31,3 +31,24 @@
     border: 1px solid gray;
     border-radius: 5px;
 }
+
+.faq-btn{
+    display: flex;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+    background-color:#FFD95A ;
+    border-radius: 5px;
+    border: 0.1px solid black;
+    text-decoration: none;
+    color: black;
+}
+
+.faq-opt{
+    margin-right: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-after-overflow: none;
+    vertical-align: center;
+    padding: 5px;
+}

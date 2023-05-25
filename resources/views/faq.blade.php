@@ -11,18 +11,36 @@
     <!-- ogni faq sarà serializzata
             La funzione di interesse prenderà i dati da db, poi con un foreach produrrà tutti i risultati utili
          -->
-    <button class="domanada-faq">Domanda 1</button>
-    <div class="risposta">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <button class="domanada-faq">Domanda 2</button>
-    <div class="risposta">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <button class="domanada-faq">Domanda 3</button>
-    <div class="risposta">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+
+
+    @if(!empty($faq))
+        @foreach ($faq as $xfaq)
+            <button class="domanada-faq">{{ $xfaq->domanda }}</button>
+            <div class="risposta">
+                <p>{{ $xfaq->risposta }}</p>
+
+                @if(isset(Auth::user()->nome))
+                    @if((Auth::User()->role)=='admin')
+                        <div class="faq-opt" style="float: right; display: inline">
+                            <a class="faq-btn" href="{{route('faqedit',['id'=>$xfaq->id], ['option'=>'edit'])}}">Modifica
+                                FAQ</a>&nbsp;
+                            <a class="faq-btn" href="{{route('faqdelete',['id'=>$xfaq->id])}}">Elimina
+                                FAQ</a>
+                        </div>
+                    @endif
+                @endif
+            </div>
+        @endforeach
+    @endif
+    @if(isset(Auth::user()->nome))
+        @if((Auth::User()->role)=='admin')
+            <center>
+                <a class="faq-btn" href="{{route('faqedit',['id'=>'create'], ['option'=>'create'])}}">Inserisci una nuova FAQ
+                </a>
+            </center>
+        @endif
+    @endif
+
 
     <script>
         var acc = document.getElementsByClassName("domanada-faq");
@@ -40,5 +58,6 @@
             });
         }
     </script>
+
 @endsection
 </html>

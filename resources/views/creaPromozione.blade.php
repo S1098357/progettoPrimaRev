@@ -21,11 +21,12 @@
             <label for="luogoFruizione">Luogo fruizione:</label>
             <input type="text" id="luogoFruizione" name="luogoFruizione"><br><br>
             <label for="Azienda">Azienda: </label>
-            <select id="Azienda" name="Azienda">
-                <option value="Azienda 1">Azienda 1</option>
-                <option value="Azienda 2">Azienda 2</option>
-                <option value="Azienda 3">Azienda 3</option>
-            </select><br><br>
+                <?php $info = \App\Models\Azienda::all(); ?>
+                @for($i=0;$i<=sizeof($info)-1;$i++)
+                    <select id="Azienda" name="Azienda">
+                        <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
+                        @endfor
+                    </select><br><br>
     <input type="submit" value="CREA">
         </form></center>
 
