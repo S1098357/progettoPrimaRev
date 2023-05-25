@@ -125,11 +125,8 @@ public function modificaAziendaFinale(Request $request)
     $data['logo'] = $request->logo;
     $data['tipologia'] = $request->tipologia;
     $data['descrizioneAzienda'] = $request->descrizioneAzienda;
-    $azienda = Azienda::create($data);
 
-    Azienda::where('id',$data['id'])->delete();
-    $Coupon= Azienda::create($data);
-
+    Azienda::where('id',$data['id'])->update($data);
     return redirect(route('listaAziende'));
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\aziendaController;
+use App\Http\Controllers\aziendaControllerDiego;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
@@ -89,5 +90,9 @@ Route::get('/visualizzaAzienda', [aziendaController::class, 'visualizzaAzienda']
 Route::post('/visualizzaAziendaPost', [aziendaController::class, 'visualizzaAziendaPost'])->name('visualizzaAziendaPost');
 
 Route::post('/eliminaAzienda', [aziendaController::class, 'eliminaAzienda'])->name('eliminaAzienda');
+
+
+
+
 
 
