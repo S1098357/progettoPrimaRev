@@ -55,4 +55,9 @@ class publicController extends Controller{
         return view('statistiche');
     }
 
+    public function listaStaff()
+    {
+        return view('listaStaff');
+    }
+
 }

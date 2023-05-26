@@ -100,6 +100,7 @@ Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->
 
 Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
 Route::get('/statistiche', [publicController::class, 'statistiche'])->name('statistiche');
+Route::get('/listaStaff', [publicController::class, 'listaStaff'])->name('listaStaff');
 
 
 
