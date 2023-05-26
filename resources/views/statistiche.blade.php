@@ -23,7 +23,7 @@
     @endfor
     <hr>
     <div class="tipoStatistica">Seleziona l'utente di cui vuoi sapere le informazioni: </div>
-    @for($i=0;$i<=sizeof($info)-1;$i++)
+    @for($i=0;$i<=sizeof($infoUtenti)-1;$i++)
         <div class="utente" >
             <div><p id="username"> Nome utente: {{$infoUtenti[$i]['username']}} </p></div>
             <div><p id="email"> Email: {{$infoUtenti[$i]['email']}} </p></div>
