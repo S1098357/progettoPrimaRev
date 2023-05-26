@@ -1,0 +1,59 @@
+
+.header_coupon{
+    margin-left: 15px;
+    margin-right: 15px;
+    float: top;
+}
+
+.nomeCoupon{
+    float: left;
+    color: #27896d;
+    z-index: 0;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.scadenza{
+    float: right;
+    color: darkred;
+    margin-top: 30px;
+    margin-right: 40px;
+    font-size: 30px;
+}
+
+.descrizione_offerta{
+    margin-top: 50px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    background-color: #FFD95A;
+    height: 400px;
+    width: inherit;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.footer_coupon{
+    margin-top: 10px;
+}
+
+.scontistica{
+    float: right;
+    margin-right: 50px;
+    color: #5377d0;
+    font-size: 45px;
+    margin-bottom: 80px;
+}
+
+.bottone_indietro{
+    float: left;
+    color: #4CAF50;
+    margin-left: 60px;
+    margin-top: 5px;
+}
+
+.bottone_indietro button{
+    height: 35px;
+    width: 80px;
+    font-size: 20px;
+}

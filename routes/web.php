@@ -98,6 +98,8 @@ Route::get('/faqdelete/{id}', [faqController::class, 'faqdelete'])->name('faqdel
 Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')->middleware('auth');
 Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('auth');
 
+Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
+
 
 
 

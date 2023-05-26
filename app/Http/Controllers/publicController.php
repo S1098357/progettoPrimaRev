@@ -45,4 +45,9 @@ class publicController extends Controller{
         return view('visualizzaPromozione');
     }
 
+    public function couponSingolo()
+    {
+        return view('couponSingolo');
+    }
+
 }
