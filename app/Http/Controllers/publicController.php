@@ -50,4 +50,9 @@ class publicController extends Controller{
         return view('couponSingolo');
     }
 
+    public function statistiche()
+    {
+        return view('statistiche');
+    }
+
 }

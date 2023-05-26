@@ -99,6 +99,7 @@ Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')
 Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('auth');
 
 Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
+Route::get('/statistiche', [publicController::class, 'statistiche'])->name('statistiche');
 
 
 
