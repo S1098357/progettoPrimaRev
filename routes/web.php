@@ -7,6 +7,7 @@ use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\promozioniController;
+use App\Http\Controllers\promozioniNuovoController;
 use App\Http\Controllers\publicController;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
@@ -60,11 +61,7 @@ Route::get('/visualizzaPromozione', [publicController::class, 'visualizzaPromozi
 
 Route::post('/visualizzaPromozionePost', [promozioniController::class, 'visualizzaPromozionePost'])->name('visualizzaPromozionePost');
 
-Route::post('/creaPromozione', [promozioniController::class, 'creaPromozione'])->name('creaPromozione');
-
 Route::post('/creaPromozionePost', [promozioniController::class, 'creaPromozionePost'])->name('creaPromozionePost');
-
-Route::get('/modificaPromozione', [promozioniController::class, 'modificaPromozione'])->name('modificaPromozione');
 
 Route::post('/modificaPromozionePost', [promozioniController::class, 'modificaPromozionePost'])->name('modificaPromozionePost');
 
@@ -101,6 +98,18 @@ Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->
 Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
 Route::get('/statistiche', [publicController::class, 'statistiche'])->name('statistiche');
 Route::get('/listaStaff', [publicController::class, 'listaStaff'])->name('listaStaff');
+
+Route::get('/listaPromozioni', [promozioniNuovoController::class, 'listaPromozioni'])->name('listaPromozioni');
+Route::get('/visualPromozione', [promozioniNuovoController::class, 'visualPromozione'])->name('visualPromozione');
+Route::post('/eliminaPromozione', [promozioniNuovoController::class, 'eliminaPromozione'])->name('eliminaPromozione');
+Route::post('/editPromozione', [promozioniNuovoController::class, 'editPromozione'])->name('editPromozione');
+Route::post('/creaPromozione', [promozioniNuovoController::class, 'creaPromozione'])->name('creaPromozione');
+Route::get('/promozioneCreator', [promozioniNuovoController::class, 'promozioneCreator'])->name('promozioneCreator');
+Route::get('/modificaPromozione', [promozioniNuovoController::class, 'modificaPromozione'])->name('modificaPromozione');
+
+
+
+
 
 
 
