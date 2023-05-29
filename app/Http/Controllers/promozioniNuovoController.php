@@ -3,14 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class promozioniNuovoController extends Controller
 {
     public function listaPromozioni(){
-        $promozioni=DB::select('select * from Coupons');
-        return view('promozioni', ['listaPromozioni'=>$promozioni]);
+        $promozioni=DB::Table('coupons')->get();
+        $listaPromozioni=[];
+        foreach ($promozioni as $promozione){
+            $dataScadenza=new DateTime($promozione->dataScadenza);
+            $dataOdierna= new DateTime(date("Y-m-d"));
+
+            if($dataOdierna<=$dataScadenza){
+                array_push($listaPromozioni, $promozione);
+            }
+        }
+        return view('promozioni', ['listaPromozioni'=>$listaPromozioni]);
     }
 
 
@@ -56,7 +66,7 @@ class promozioniNuovoController extends Controller
         $data['luogoFruizione'] = $request->luogoFruizione;
         $data['idAzienda'] = $request->Azienda;
         $data['qrCode'] = 'prova';
-        $data['tempoFruizione'] = '2h';
+        $data['dataScadenza'] = $request->dataScadenza;
 
         Coupon::where('idCoupon',$request->id)->update($data);
         return redirect(route('listaPromozioni'));
@@ -81,8 +91,8 @@ class promozioniNuovoController extends Controller
         $data['luogoFruizione'] = $request->luogoFruizione;
         $data['idAzienda'] = $request->Azienda;
         $data['qrCode'] = 'prova';
-        $data['tempoFruizione'] = '2h';
-        $Coupon = Coupon::create($data);
+        $data['dataScadenza'] = $request->dataScadenza;
+        Coupon::create($data);
 
         return redirect(route('listaPromozioni'));
 

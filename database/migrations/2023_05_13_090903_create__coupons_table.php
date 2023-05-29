@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('scontistica');
             $table->string('qrCode');
             $table->string('luogoFruizione');
-            $table->string('tempoFruizione');
+            $table->date('dataScadenza');
         });
     }
 

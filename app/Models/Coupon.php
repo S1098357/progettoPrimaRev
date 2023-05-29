@@ -12,7 +12,7 @@ class Coupon extends Model
         'idCoupon', 'idAzienda',
         'oggetto', 'modalità',
         'scontistica', 'qrCode',
-        'luogoFruizione', 'tempoFruizione'
+        'luogoFruizione', 'dataScadenza'
     ];
 
     public function appartenenzaAzienda(){

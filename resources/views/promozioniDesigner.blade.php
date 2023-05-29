@@ -37,6 +37,8 @@
                                 <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
                                 @endfor
                             </select><br><br>
+                            <label for="dataScadenza">Data di scadenza:</label>
+                            <input type="date" id="dataScadenza" name="dataScadenza" value="{{$promo->dataScadenza}}"><br><br>
                             <input type="submit" value="Salva Modifiche" formaction="{{route('editPromozione',['id'=>$promo->idCoupon])}}">
                             <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione',['idCoupon'=>$promo->idCoupon])}}">
                     </form></center>
@@ -61,6 +63,8 @@
                         <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
                         @endfor
                     </select><br><br>
+                        <label for="dataScadenza">Data di scadenza:</label>
+                        <input type="date" id="dataScadenza" name="dataScadenza"><br><br>
                     <input type="submit" value="Crea" formaction="{{route('creaPromozione')}}">
                     </form></center>
     @endif
