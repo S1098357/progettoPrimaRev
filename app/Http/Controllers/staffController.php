@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class staffController extends Controller
 {
     public function listaStaff(){
-        $staff=DB::select('select * from users');
-        return view('listaStaff', ['listaStaff'=>$staff]);
+        $staff=DB::Table('users')
+            ->where('role', 'staff')->get();
+        $utenti=DB::Table('users')
+            ->where('role', 'user')->get();
+        return view('listaStaff', ['listaStaff'=>$staff],['listaUtenti'=>$utenti]);
     }
 
 
