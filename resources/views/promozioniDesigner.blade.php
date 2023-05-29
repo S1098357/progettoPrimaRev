@@ -7,11 +7,11 @@
 
 @section('content')
     @if($option == 'edit')
-        <h2>Modifica Azienda</h2>
+        <h2>Modifica Promozione</h2>
 
     @endif
     @if($option == 'create')
-        <h2>Crea nuova azienda</h2>
+        <h2>Crea nuova promozione</h2>
     @endif
     <center>
 
