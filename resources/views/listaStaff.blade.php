@@ -16,13 +16,13 @@
             <div><p id="username"> Nome utente: {{$infoUtenti[$i]['username']}} </p></div>
             <div><p id="email"> Email: {{$infoUtenti[$i]['email']}} </p></div>
             <div>
-                <div class="bottoni1"> <button onclick="location.href='{{route('home', ['id'=>$infoUtenti[$i]['id']])}}';">Modifica</button> </div>
-                <div class="bottoni2"> <button onclick="location.href='{{route('home', ['id'=>$infoUtenti[$i]['id']])}}';">Elimina</button> </div>
+                <div class="bottoni1"> <button onclick="location.href='{{route('modificaStaff', ['id'=>$infoUtenti[$i]['id']])}}';">Modifica</button> </div>
+                <div class="bottoni2"> <button onclick="location.href='{{route('eliminaStaff', ['id'=>$infoUtenti[$i]['id']])}}';">Elimina</button> </div>
             </div>
         </div>
     @endfor
 
-    <div class="aggiungiStaff"><button onclick="location.href='{{route('home')}}';">+</button></div>
+    <div class="aggiungiStaff"><button onclick="location.href='{{route('staffCreator')}}';">+</button></div>
 
 @endsection
 </html>

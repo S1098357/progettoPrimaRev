@@ -9,6 +9,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\promozioniController;
 use App\Http\Controllers\promozioniNuovoController;
 use App\Http\Controllers\publicController;
+use App\Http\Controllers\staffController;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
 
@@ -106,6 +107,14 @@ Route::post('/editPromozione', [promozioniNuovoController::class, 'editPromozion
 Route::post('/creaPromozione', [promozioniNuovoController::class, 'creaPromozione'])->name('creaPromozione');
 Route::get('/promozioneCreator', [promozioniNuovoController::class, 'promozioneCreator'])->name('promozioneCreator');
 Route::get('/modificaPromozione', [promozioniNuovoController::class, 'modificaPromozione'])->name('modificaPromozione');
+
+
+Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaStaff');
+Route::get('/eliminaStaff', [staffController::class, 'eliminaStaff'])->name('eliminaStaff');
+Route::post('/editStaff', [staffController::class, 'editStaff'])->name('editStaff');
+Route::post('/creaStaff', [staffController::class, 'creaStaff'])->name('creaStaff');
+Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('staffCreator');
+Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff');
 
 
 
