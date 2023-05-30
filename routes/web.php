@@ -11,6 +11,7 @@ use App\Http\Controllers\promozioniController;
 use App\Http\Controllers\promozioniNuovoController;
 use App\Http\Controllers\publicController;
 use App\Http\Controllers\staffController;
+use App\Http\Controllers\statisticheController;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Route;
 
@@ -91,14 +92,7 @@ Route::post('/visualizzaAziendaPost', [aziendaController::class, 'visualizzaAzie
 
 Route::post('/eliminaAzienda', [aziendaController::class, 'eliminaAzienda'])->name('eliminaAzienda');
 
-Route::get('/faq', [publicController::class, 'faq'])->name('faq');
-Route::get('/faqedit/{id}', [faqController::class, 'faqedit'])->name('faqedit')->middleware('auth');
-Route::get('/faqdelete/{id}', [faqController::class, 'faqdelete'])->name('faqdelete')->middleware('auth');
-Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')->middleware('auth');
-Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('auth');
-
 Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
-Route::get('/statistiche', [publicController::class, 'statistiche'])->name('statistiche');
 Route::get('/listaStaff', [publicController::class, 'listaStaff'])->name('listaStaff');
 
 Route::get('/listaPromozioni', [promozioniNuovoController::class, 'listaPromozioni'])->name('listaPromozioni');
@@ -118,6 +112,10 @@ Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('sta
 Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff');
 
 Route::get('/salvaCoupon', [couponController::class, 'salvaCoupon'])->name('salvaCoupon');
+
+Route::get('/statistiche', [statisticheController::class, 'statistiche'])->name('statistiche');
+
+
 
 
 

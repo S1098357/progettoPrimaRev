@@ -31,7 +31,7 @@
                     <div><p>Sconto: {{session('couponPassati')[$i]['scontistica']}}</p></div>
                     <div><p>QrCode: {{session('couponPassati')[$i]['qrCode']}}</p></div>
                     <div><p>Usufruibile presso: {{session('couponPassati')[$i]['luogoFruizione']}}</p></div>
-                    <div><p>Nel periodo: {{session('couponPassati')[$i]['tempoFruizione']}}</p></div>
+                    <div><p>Da riscuotere entro: {{session('couponPassati')[$i]['dataScadenza']}}</p></div>
                     @if(Auth::user())
                         <div><button type="submit" value="Salva coupon" onclick="location.href='{{route('salvaCoupon', ['id'=>session('couponPassati')[$i]['idCoupon']])}}';"></button></div>
                     @endif
@@ -41,21 +41,21 @@
             <center><div class="errore">{{session('Errore')}}</div></center>
         @else
             <?php $info = \App\Models\Coupon::all(); ?>
-            @for($i=0;$i<=sizeof($info)-1;$i++)
+            @foreach($listaPromozioni as $promozione)
                 <div class="offerta">
-                    <div><p>Nome Offerta:{{$info[$i]['idCoupon']}}</p></div>
-                    <div><p>Azienda: {{$info[$i]['idAzienda']}}</p></div>
-                    <div><p>Descrizione offerta:{{$info[$i]['oggetto']}}</p></div>
-                    <div><p>Modalità offerta: {{$info[$i]['modalità']}}</p></div>
-                    <div><p>Sconto: {{$info[$i]['scontistica']}}</p></div>
-                    <div><p>QrCode: {{$info[$i]['qrCode']}}</p></div>
-                    <div><p>Usufruibile presso: {{$info[$i]['luogoFruizione']}}</p></div>
-                    <div><p>Nel periodo: {{$info[$i]['tempoFruizione']}}</p></div>
+                    <div><p>Nome Offerta:{{$promozione->idCoupon}}</p></div>
+                    <div><p>Azienda: {{$promozione->idAzienda}}</p></div>
+                    <div><p>Descrizione offerta:{{$promozione->oggetto}}</p></div>
+                    <div><p>Modalità offerta: {{$promozione->modalità}}</p></div>
+                    <div><p>Sconto: {{$promozione->scontistica}}</p></div>
+                    <div><p>QrCode: {{$promozione->qrCode}}</p></div>
+                    <div><p>Usufruibile presso: {{$promozione->luogoFruizione}}</p></div>
+                    <div><p>Da riscuotere entro: {{$promozione->dataScadenza}}</p></div>
                     @if(Auth::user())
                         <div><button type="submit" onclick="location.href='{{route('salvaCoupon', ['id'=>$info[$i]['idCoupon']])}}';">Salva coupon</button></div>
                     @endif
                 </div>
-            @endfor
+            @endforeach
         @endif
     <br>
     <br>

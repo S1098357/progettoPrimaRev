@@ -20,7 +20,17 @@ class publicController extends Controller{
     }
 
     public function catalogo(){
-        return view('catalogo');
+        $promozioni=DB::Table('coupons')->get();
+        $listaPromozioni=[];
+        foreach ($promozioni as $promozione){
+            $dataScadenza=new DateTime($promozione->dataScadenza);
+            $dataOdierna= new DateTime(date("Y-m-d"));
+
+            if($dataOdierna<=$dataScadenza){
+                array_push($listaPromozioni, $promozione);
+            }
+        }
+        return view('catalogo', ['listaPromozioni'=>$listaPromozioni]);
     }
 
     public function info(){
@@ -65,11 +75,6 @@ class publicController extends Controller{
             }
     }
         return view('couponSingolo',['listaCoupon'=>$listaCoupon],['listaCodici'=>$listaCodici]);
-    }
-
-    public function statistiche()
-    {
-        return view('statistiche');
     }
 
     public function listaStaff()

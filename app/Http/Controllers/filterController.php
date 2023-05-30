@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
@@ -13,7 +14,17 @@ class filterController extends Controller
 
     public function filtri()
     {
-        return view('catalogo');
+        $promozioni=DB::Table('coupons')->get();
+        $listaPromozioni=[];
+        foreach ($promozioni as $promozione){
+            $dataScadenza=new DateTime($promozione->dataScadenza);
+            $dataOdierna= new DateTime(date("Y-m-d"));
+
+            if($dataOdierna<=$dataScadenza){
+                array_push($listaPromozioni, $promozione);
+            }
+        }
+        return view('catalogo', ['listaPromozioni'=>$listaPromozioni]);
     }
 
 
