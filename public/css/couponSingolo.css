@@ -8,9 +8,9 @@
 .nomeCoupon{
     float: left;
     color: #27896d;
-    z-index: 0;
-    font-size: 40px;
-    margin-top: 20px;
+    z-index: -5;
+    font-size: 30px;
+    margin-top: -30px;
 }
 
 .scadenza{
@@ -22,15 +22,17 @@
 }
 
 .descrizione_offerta{
-    margin-top: 50px;
+    text-align: left;
+    margin-top: 70px;
     font-size: 25px;
     margin-bottom: 20px;
     background-color: #FFD95A;
-    height: 400px;
     width: inherit;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
+    padding-top: 15px;
+    border-radius: 10px;
 }
 
 .footer_coupon{
@@ -42,18 +44,23 @@
     margin-right: 50px;
     color: #5377d0;
     font-size: 45px;
-    margin-bottom: 80px;
 }
 
-.bottone_indietro{
+.codice{
     float: left;
     color: #4CAF50;
     margin-left: 60px;
     margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .bottone_indietro button{
     height: 35px;
-    width: 80px;
-    font-size: 20px;
+    margin-top: 80px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
 }

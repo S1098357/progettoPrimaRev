@@ -32,6 +32,9 @@
                     <div><p>QrCode: {{session('couponPassati')[$i]['qrCode']}}</p></div>
                     <div><p>Usufruibile presso: {{session('couponPassati')[$i]['luogoFruizione']}}</p></div>
                     <div><p>Nel periodo: {{session('couponPassati')[$i]['tempoFruizione']}}</p></div>
+                    @if(Auth::user())
+                        <div><button type="submit" value="Salva coupon" onclick="location.href='{{route('salvaCoupon', ['id'=>session('couponPassati')[$i]['idCoupon']])}}';"></button></div>
+                    @endif
                 </div>
             @endfor
         @elseif(session()->has('Errore'))
@@ -48,6 +51,9 @@
                     <div><p>QrCode: {{$info[$i]['qrCode']}}</p></div>
                     <div><p>Usufruibile presso: {{$info[$i]['luogoFruizione']}}</p></div>
                     <div><p>Nel periodo: {{$info[$i]['tempoFruizione']}}</p></div>
+                    @if(Auth::user())
+                        <div><button type="submit" onclick="location.href='{{route('salvaCoupon', ['id'=>$info[$i]['idCoupon']])}}';">Salva coupon</button></div>
+                    @endif
                 </div>
             @endfor
         @endif

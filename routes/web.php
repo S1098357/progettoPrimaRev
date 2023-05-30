@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\aziendaController;
 use App\Http\Controllers\aziendaControllerDiego;
+use App\Http\Controllers\couponController;
 use App\Http\Controllers\faqController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
@@ -115,6 +116,8 @@ Route::post('/editStaff', [staffController::class, 'editStaff'])->name('editStaf
 Route::post('/creaStaff', [staffController::class, 'creaStaff'])->name('creaStaff');
 Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('staffCreator');
 Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff');
+
+Route::get('/salvaCoupon', [couponController::class, 'salvaCoupon'])->name('salvaCoupon');
 
 
 

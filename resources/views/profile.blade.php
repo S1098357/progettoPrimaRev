@@ -45,6 +45,6 @@
             <td>4</td>
         </tr>
     </table>
-    <button onclick="visualizzaCoupon()">Visualizza Coupon Salvati</button>
+    <button onclick="location.href='{{route('couponSingolo')}}';">Visualizza Coupon Salvati</button>
 @endif
 @endsection

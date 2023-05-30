@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
+use App\Models\emissione_coupon;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Auth;
-
 class publicController extends Controller{
 
 
@@ -47,7 +49,22 @@ class publicController extends Controller{
 
     public function couponSingolo()
     {
-        return view('couponSingolo');
+        $listaId=DB::Table('emissione_coupon')
+            ->where('idUtente', Auth::user()->id)->get();
+        $tuttiCoupon=DB::Table('coupons')->get();
+        $listaCoupon=[];
+        $dataOdierna= new DateTime(date("Y-m-d"));
+        $listaCodici=[];
+        foreach ($listaId as $id){
+            foreach ($tuttiCoupon as $coupon){
+                $dataScadenza=new DateTime($coupon->dataScadenza);
+                if($coupon->idCoupon==$id->idCoupon and $dataOdierna<=$dataScadenza){
+                    array_push($listaCodici,$id->codice);
+                    array_push($listaCoupon,$coupon);
+                }
+            }
+    }
+        return view('couponSingolo',['listaCoupon'=>$listaCoupon],['listaCodici'=>$listaCodici]);
     }
 
     public function statistiche()

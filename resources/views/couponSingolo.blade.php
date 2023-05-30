@@ -8,24 +8,26 @@
 @section('content')
 
 
-    @if(session()->has('coupon'))
+    @for($i=0;$i<=sizeof($listaCoupon)-1; $i++)
         <div class="header_coupon">
-            <div class="nomeCoupon"><h1>{{session('coupon')['nomeOfferta']}}</h1></div>
-            <div class="scadenza"> Scadenza: {{session('coupon')['scadenza']}}</div>
+            <div class="nomeCoupon"><h1>{{$listaCoupon[$i]->idCoupon}}</h1></div>
+            <div class="scadenza"> Scadenza: {{$listaCoupon[$i]->dataScadenza}}</div>
         </div>
         <br>
         <br>
         <body>
         <div class="descrizione_offerta">
-            <br>
-            {{session('coupon')['descrizioneOfferta']}}
+            <p>{{$listaCoupon[$i]->oggetto}}</p>
         </div>
         </body>
         <div class="footer_coupon">
-            <div class="scontistica">{{session('coupon')['scontistica']}}%</div>
-            <div class="bottone_indietro"><button  onclick="location.href='{{route('profile')}}';">Indietro</button> </div>
+            <div class="scontistica">{{$listaCoupon[$i]->scontistica}}%</div>
+            <div class="codice">Il tuo codice: {{$listaCodici[$i]}} </div>
         </div>
-    @endif
+        <br>
+    @endfor
+
+    <center><div class="bottone_indietro"><button  onclick="location.href='{{route('Profile')}}';">Indietro</button> </div></center>
 
 
 

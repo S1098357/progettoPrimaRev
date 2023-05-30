@@ -58,8 +58,8 @@
                 <input type="text" id="luogoFruizione" name="luogoFruizione"><br><br>
                 <label for="Azienda">Azienda: </label>
                     <?php $info = \App\Models\Azienda::all(); ?>
-                @for($i=0;$i<=sizeof($info)-1;$i++)
                     <select id="Azienda" name="Azienda">
+                @for($i=0;$i<=sizeof($info)-1;$i++)
                         <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
                         @endfor
                     </select><br><br>
