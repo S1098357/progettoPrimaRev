@@ -21,7 +21,6 @@ class publicController extends Controller{
 
     public function catalogo(){
         $promozioni=DB::Table('coupons')->get();
-        $couponSalvati=DB::Table('emissione_coupon')->where('idUtente', Auth::user()->id)->get();
         $listaPromozioni=[];
         foreach ($promozioni as $promozione){
             $dataScadenza=new DateTime($promozione->dataScadenza);
@@ -31,14 +30,19 @@ class publicController extends Controller{
                 array_push($listaPromozioni, $promozione);
             }
         }
-        foreach ($couponSalvati as $coupon){
-            for ($i=0;$i<=sizeof($listaPromozioni)-1; $i++) {
-                if ($coupon->idCoupon == $listaPromozioni[$i]->idCoupon) {
-                    array_splice($listaPromozioni,$i,1);
+        if(Auth::check()) {
+            $couponSalvati=DB::Table('emissione_coupon')->where('idUtente', Auth::user()->id)->get();
+            foreach ($couponSalvati as $coupon) {
+                for ($i = 0; $i <= sizeof($listaPromozioni) - 1; $i++) {
+                    if ($coupon->idCoupon == $listaPromozioni[$i]->idCoupon) {
+                        array_splice($listaPromozioni, $i, 1);
+                    }
                 }
             }
+            return view('catalogo', ['listaPromozioni' => $listaPromozioni]);
+        }else{
+            return view('catalogo', ['listaPromozioni' => $listaPromozioni]);
         }
-        return view('catalogo', ['listaPromozioni'=>$listaPromozioni]);
     }
 
     public function info(){
