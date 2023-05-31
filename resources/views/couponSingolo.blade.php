@@ -24,7 +24,7 @@
             <div class="scontistica">{{$listaCoupon[$i]->scontistica}}%</div>
             <div class="codice">Il tuo codice: {{$listaCodici[$i]}} </div>
         </div>
-        <br>
+        <hr color="#4CAF50">
     @endfor
 
     <center><div class="bottone_indietro"><button  onclick="location.href='{{route('Profile')}}';">Indietro</button> </div></center>

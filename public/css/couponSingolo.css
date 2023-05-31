@@ -37,6 +37,7 @@
 
 .footer_coupon{
     margin-top: 10px;
+    margin-bottom: 80px;
 }
 
 .scontistica{
@@ -57,10 +58,14 @@
 
 .bottone_indietro button{
     height: 35px;
-    margin-top: 80px;
+    margin-bottom: 80px;
     background-color: #4CAF50;
     color: white;
     font-size: 24px;
     border: none;
     border-radius: 4px;
+}
+
+hr{
+    height: 1px;
 }

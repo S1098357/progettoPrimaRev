@@ -52,7 +52,7 @@
                     <div><p>Usufruibile presso: {{$promozione->luogoFruizione}}</p></div>
                     <div><p>Da riscuotere entro: {{$promozione->dataScadenza}}</p></div>
                     @if(Auth::user())
-                        <div><button type="submit" onclick="location.href='{{route('salvaCoupon', ['id'=>$info[$i]['idCoupon']])}}';">Salva coupon</button></div>
+                        <div><button type="submit" onclick="location.href='{{route('salvaCoupon', ['id'=>$promozione->idCoupon])}}';">Salva coupon</button></div>
                     @endif
                 </div>
             @endforeach
