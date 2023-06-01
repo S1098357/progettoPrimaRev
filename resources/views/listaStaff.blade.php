@@ -7,7 +7,6 @@
 
 @section('content')
 
-@if(sizeof($listaStaff)!=0))
 
     <div class="titolo">Gestisci i membri dello staff: </div>
 
@@ -23,7 +22,6 @@
     @endforeach
 
     <div class="aggiungiStaff"><button onclick="location.href='{{route('staffCreator')}}';">+</button></div>
-@endif
 
 @if(sizeof($listaUtenti)!=0))
     <hr>

@@ -89,6 +89,20 @@ class publicController extends Controller{
         return view('couponSingolo',['listaCoupon'=>$listaCoupon],['listaCodici'=>$listaCodici]);
     }
 
+    public function couponSingolo2(Request $request){
+        $listaId=DB::Table('emissione_coupon')
+            ->where('idUtente', Auth::user()->id)->get();
+        $Coupons=DB::Table('coupons')->where('idCoupon', $request->id)->get();
+        $codice=null;
+        foreach ($listaId as $coupon){
+            if ($coupon->idCoupon==$request->id){
+                $codice=$coupon->codice;
+                $codice='ciao';
+            }
+        }
+        return view('couponSingolo',['promozione'=>$Coupons],['codice'=>$codice]);
+    }
+
     public function listaStaff()
     {
         return view('listaStaff');

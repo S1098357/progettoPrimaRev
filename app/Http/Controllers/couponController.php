@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\emissione_coupon;
-use App\Models\emissioneCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +21,15 @@ class couponController extends Controller
         }
         $data['codice']=$randomString;
         emissione_coupon::create($data);
-        return redirect(route('catalogo'));
+        $listaId=DB::Table('emissione_coupon')
+            ->where('idUtente', Auth::user()->id)->get();
+        $Coupons=DB::Table('coupons')->where('idCoupon', $request->id)->get();
+        $codice=null;
+        foreach ($listaId as $coupon){
+            if ($coupon->idCoupon==$request->id){
+                $codice=$coupon->codice;
+            }
+        }
+        return view('couponSingolo',['promozione'=>$Coupons],['codice'=>$codice]);
     }
 }

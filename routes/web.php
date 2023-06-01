@@ -115,6 +115,10 @@ Route::get('/salvaCoupon', [couponController::class, 'salvaCoupon'])->name('salv
 
 Route::get('/statistiche', [statisticheController::class, 'statistiche'])->name('statistiche');
 
+Route::get('/couponSingolo2', [publicController::class, 'couponSingolo2'])->name('couponSingolo2');
+
+
+
 
 
 
