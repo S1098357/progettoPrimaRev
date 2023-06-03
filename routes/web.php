@@ -46,9 +46,12 @@ Route::post('/signup', [loginController::class, 'signupPost'])->name('signupPost
 
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
-Route::post('/filtri', [filterController::class, 'filtriPost'])->name('filtri');
 
 Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
+Route::get('/filter', [filterController::class, 'filter'])->name('filtri');
+Route::get('/filter2', [filterController::class, 'filter2'])->name('filtri2');
+Route::get('/filter3', [filterController::class, 'filter3'])->name('filtri3');
+
 
 Route::get('/profile', [publicController::class, 'profile'])->name('Profile');
 

@@ -35,7 +35,7 @@ class filterController extends Controller
             'ricercaAzienda'
         ]);
 
-        $ricercaP['ricercaParola']= $request->ricercaParola;
+        $ricercaP['ricercaParola'] = $request->ricercaParola;
         $ricercaA['ricercaAzienda'] = $request->ricercaAzienda;
 
         // $azienda=$request->only('idAzienda');
@@ -45,19 +45,19 @@ class filterController extends Controller
         $couponPassati = [];
 
         if ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) != 0) {
-            for ($i = 0; $i <= sizeof($infoAzienda)-1; $i++) {
+            for ($i = 0; $i <= sizeof($infoAzienda) - 1; $i++) {
                 if (str_contains($infoAzienda[$i]['oggetto'], $ricercaP['ricercaParola'])) {
                     array_push($couponPassati, $infoAzienda[$i]);
                 }
             }
-        }elseif ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) == 0){
-            for ($i = 0; $i <= sizeof($info)-1; $i++) {
+        } elseif ($ricercaP['ricercaParola'] != '' and sizeof($infoAzienda) == 0) {
+            for ($i = 0; $i <= sizeof($info) - 1; $i++) {
                 if (str_contains($info[$i]['oggetto'], $ricercaP['ricercaParola'])) {
                     array_push($couponPassati, $info[$i]);
                 }
             }
-        }elseif ($ricercaP['ricercaParola'] == '' and sizeof($infoAzienda) != 0){
-            for ($i = 0; $i <= sizeof($infoAzienda)-1; $i++){
+        } elseif ($ricercaP['ricercaParola'] == '' and sizeof($infoAzienda) != 0) {
+            for ($i = 0; $i <= sizeof($infoAzienda) - 1; $i++) {
                 array_push($couponPassati, $infoAzienda[$i]);
             }
         }
@@ -68,4 +68,92 @@ class filterController extends Controller
             return redirect()->intended(route('catalogo'))->with('couponPassati', $couponPassati);
         }
     }
+
+        public function filter(Request $request){
+        $output="";
+        if ($request->ricercaAzienda!='')
+        {
+            $filteredCoupons= Coupon::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
+            foreach ($filteredCoupons as $filteredCoupon){
+                $output.=
+                    '<div class="promozione">
+             <p>Nome Offerta: '.$filteredCoupon->idAzienda.'</p>
+             <p>Oggetto Offerta:'.$filteredCoupon->oggetto.'</p>
+            </div>';
+            }
+            return response($output);
+        }else{
+            $output='<div class="promozione"></div>';
+            return response($output);
+        }
+
+    }
+
+
+
+        public function filter2(Request $request){
+
+        $output="";
+        if ($request->ricercaParola!='') {
+            $filteredCoupons = Coupon::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            foreach ($filteredCoupons as $filteredCoupon) {
+                $output .=
+                    '<div class="promozione">
+             <p>Nome Offerta: ' . $filteredCoupon->idAzienda . '</p>
+             <p>Oggetto Offerta:' . $filteredCoupon->oggetto . '</p>
+            </div>';
+            }
+            return response($output);
+        }else{
+            $output='<div class="promozione"></div>';
+            return response(null);
+        }
+    }
+
+
+        public function filter3(Request $request){
+        $output = "";
+        if ($request->ricercaAzienda!=''&& $request->ricercaParola==''){
+            $filteredCoupons= Coupon::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
+            foreach ($filteredCoupons as $filteredCoupon){
+                $output.=
+                    '<div class="promozione">
+             <p>Nome Offerta: '.$filteredCoupon->idAzienda.'</p>
+             <p>Oggetto Offerta:'.$filteredCoupon->oggetto.'</p>
+            </div>';
+            }
+            return response($output);
+        }
+        if ($request->ricercaParola!=''&&$request->ricercaAzienda==''){
+            $filteredCoupons = Coupon::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            foreach ($filteredCoupons as $filteredCoupon) {
+                $output .=
+                    '<div class="promozione">
+             <p>Nome Offerta: ' . $filteredCoupon->idAzienda . '</p>
+             <p>Oggetto Offerta:' . $filteredCoupon->oggetto . '</p>
+            </div>';
+            }
+            return response($output);
+        }
+        $listaCoupon=[];
+        if ($request->ricercaParola && $request->ricercaAzienda) {
+            $filteredCouponsbyName = Coupon::where('idAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
+            $filteredCouponsbyWords = Coupon::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            foreach ($filteredCouponsbyWords as $filteredCouponbyWords) {
+                foreach ($filteredCouponsbyName as $filteredCouponbyName){
+                    if ($filteredCouponbyName==$filteredCouponbyWords){
+                        array_push($listaCoupon,$filteredCouponbyName);
+                    }
+                }
+                foreach ($listaCoupon as $coupon){
+                    $output .=
+                        '<div class="promozione">
+                    <p>Nome Offerta: ' . $coupon->idAzienda . '</p>
+                    <p>Oggetto Offerta:' . $coupon->oggetto . '</p>
+                 </div>';
+                }
+            }
+        }
+            return response($output);
+        }
 }
