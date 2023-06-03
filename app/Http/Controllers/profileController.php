@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,19 @@ class profileController extends Controller
             'datadinascita',
             'genere'
         ]);
+
+        $listaUser=User::all();
+        $listaUsername=[];
+        foreach ($listaUser as $user){
+            if (Auth::user()->username!=$user->username){
+                array_push($listaUsername,$user->username);
+            }
+        }
+        if (in_array($request->username, $listaUsername)) {
+            return view('modificaProfilo', ['erroreUsername' => 'Lo username scelto è già in uso']);
+        }
+
+
 
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);

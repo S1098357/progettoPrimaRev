@@ -12,7 +12,10 @@
                 <h2>Modifica i tuoi dati personali</h2>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="{{$utente['username']}}"><br><br>
-                <label for="username">Password:</label>
+            @if(isset($erroreUsername))
+                <p>{{$erroreUsername}}</p>
+            @endif
+                <label for="password">Password:</label>
                 <input type="text" id="password" name="password"><br><br>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="{{$utente['email']}}"><br><br>
