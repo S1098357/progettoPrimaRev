@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('telefono');
             $table->date('datadinascita');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('cognome');
             $table->string('genere');
             $table->string('role')->default('user');
