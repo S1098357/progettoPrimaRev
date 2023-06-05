@@ -19,6 +19,7 @@
         <body>
         <div class="descrizione_offerta">
             <p>{{$listaCoupon[$i]->oggetto}}</p>
+            <div class="usufruente"> Nome: {{Auth::user()->nome}} {{Auth::user()->cognome}}</div>
         </div>
         </body>
         <div class="footer_coupon">
@@ -39,6 +40,7 @@
         <body>
         <div class="descrizione_offerta">
             <p>{{$promo->oggetto}}</p>
+            <div class="usufruente"><p></p></div>
         </div>
         </body>
         <div class="footer_coupon">

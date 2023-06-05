@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\emissione_coupon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,7 @@ class couponController extends Controller
                 $codice=$coupon->codice;
             }
         }
+        $utenti=User::all();
         return view('couponSingolo',['promozione'=>$Coupons],['codice'=>$codice]);
     }
 }
