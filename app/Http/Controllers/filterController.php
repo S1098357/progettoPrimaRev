@@ -140,19 +140,20 @@ class filterController extends Controller
             $filteredCouponsbyName = Coupon::where('idAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
             $filteredCouponsbyWords = Coupon::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
             foreach ($filteredCouponsbyWords as $filteredCouponbyWords) {
-                foreach ($filteredCouponsbyName as $filteredCouponbyName){
-                    if ($filteredCouponbyName==$filteredCouponbyWords){
-                        array_push($listaCoupon,$filteredCouponbyName);
+                foreach ($filteredCouponsbyName as $filteredCouponbyName) {
+                    if ($filteredCouponbyName == $filteredCouponbyWords) {
+                        array_push($listaCoupon, $filteredCouponbyName);
                     }
                 }
-                foreach ($listaCoupon as $coupon){
-                    $output .=
-                        '<div class="promozione">
+            }
+            foreach ($listaCoupon as $coupon){
+                $output .=
+                    '<div class="promozione">
                     <p>Nome Offerta: ' . $coupon->idAzienda . '</p>
                     <p>Oggetto Offerta:' . $coupon->oggetto . '</p>
                  </div>';
-                }
             }
+
         }
             return response($output);
         }
