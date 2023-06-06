@@ -18,6 +18,7 @@
             <div class="descrizione_offerta">
                 <p>Descrizione dell'offerta: <br>
                     {{$listaCoupon[$i]->oggetto}}</p>
+                <p class="usufruente"><b>Nome usufruente: {{Auth::user()->nome}} {{Auth::user()->cognome}}</b></p>
             </div>
             <div class="footer_coupon">
                 <div class="scontistica">{{$listaCoupon[$i]->scontistica}}%</div>
@@ -46,6 +47,8 @@
             <div class="descrizione_offerta">
                 <p>Descrizione della promozione: <br>
                     {{$promo->oggetto}}</p>
+                <br>
+                <p class="usufruente">Nome usufruente: {{Auth::user()->nome}} {{Auth::user()->cognome}}</p>
             </div>
             <div class="footer_coupon">
                 <div class="scontistica">{{$promo->scontistica}}%</div>

@@ -28,7 +28,6 @@
     width: inherit;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
     padding-top: 15px;
     border-radius: 10px;
 }
@@ -66,4 +65,8 @@
 
 hr{
     height: 1px;
+}
+
+.usufruente{
+    color: #1147c0;
 }

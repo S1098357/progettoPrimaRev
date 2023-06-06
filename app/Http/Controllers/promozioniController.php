@@ -21,7 +21,6 @@ class promozioniController extends Controller
             ->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')
             ->select('promozione.*','aziendas.nomeAzienda as nomeAzienda')
             ->get();
-        #$promozioni = DB::Table('promozione')->get();
         $listaPromozioni = [];
         foreach ($promozioni as $promozione) {
             $dataScadenza = new DateTime($promozione->dataScadenza);

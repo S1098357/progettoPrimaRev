@@ -2,7 +2,7 @@
 <html>
 @extends('layout.layout')
 @section('customCss')
-    <link rel="stylesheet" type="text/css" href="{{URL('public\css\home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\home.css') }}">
 @endsection
 @section('content')
 
@@ -15,11 +15,9 @@
     <div class="zone">
         <h2>Funzionalità del Sito</h2>
         <p>Tra le funzionalità del sito potrai:</p>
-        <ul>
-            <li>Creare un account</li>
-            <li>Accedere ad un sacco di promozioni diverse!</li>
-            <li>Acquisire coupon e stamparli</li>
-        </ul>
+            <p>Creare un account</p>
+            <p>Accedere ad un sacco di promozioni diverse!</p>
+            <p>Acquisire coupon e stamparli</p>
 
     </div>
 

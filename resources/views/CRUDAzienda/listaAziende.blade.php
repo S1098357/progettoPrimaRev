@@ -26,6 +26,7 @@
                         <button onclick="location.href='{{route('azienda', ['idAzienda'=>$azienda->idAzienda])}}';">Visual Azienda</button>
                     </li>
                 @endforeach
+                <br><br>
             @endif
         </div>
     </ul>
@@ -33,7 +34,7 @@
         @can('isAdmin')
             <div class="aggiungiAzienda">
                 <button  onclick="location.href='{{route('aziendaCreator', ['option'=>'create'])}}';">+</button>
-                <br><br><
+                <br><br>
             </div>
         @endcan
     @endif

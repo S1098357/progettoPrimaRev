@@ -28,7 +28,7 @@ class filterController extends Controller
             return response($output);
         }
         if ($request->ricercaParola!='' && $request->ricercaAzienda==''){
-            $filteredCoupons = Promozione::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            $filteredCoupons = Promozione::join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
             foreach ($filteredCoupons as $filteredCoupon) {
                 $output .=
                     '<div class="promozione">

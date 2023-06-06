@@ -47,7 +47,7 @@
 
 .aggiungiAzienda button{
     height: 180px;
-    width: 1490px;
+    width: 98%;
     font-size: 100px;
     text-align: center;
     margin-top: 10px;
@@ -58,6 +58,7 @@
     padding: 14px 16px 30px;
     border-radius: 10px;
     margin-bottom: 80px;
+    margin-left: 20px;
 }
 
 

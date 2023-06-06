@@ -8,8 +8,9 @@
 @section('content')
     <?php $info = \App\Models\Azienda::all(); ?>
     @if(sizeof($info)==0)
+        <center>
         <p class="noAziende">Non ci sono registrate aziende nel sito</p>
-        <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaPromozioni')}}';">Indietro</button> </div></center>
+        <div class="bottone_indietro"><button  onclick="location.href='{{route('listaPromozioni')}}';">Indietro</button> </div></center>
     @else
         @if($option == 'edit')
             <h2>Modifica Promozione</h2>
