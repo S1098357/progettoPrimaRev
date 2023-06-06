@@ -58,7 +58,4 @@ class filterController extends Controller
 
         return response($output);
     }
-
-
-
 }
