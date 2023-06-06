@@ -11,7 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
     protected $table = "users";
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +28,8 @@ class User extends Authenticatable
         'datadinascita',
         'username',
         'cognome',
-        'genere'
+        'genere',
+        'role'
     ];
 
     /**
@@ -49,6 +52,12 @@ class User extends Authenticatable
     ];*/
 
     public $timestamps = false;
+
+
+    //This should firstly check to see if you User table has the field 'role' and then check your parameter $role against the role field.
+    //Questo metodo servirà poi nel loginController per indirizzare la persona che è acceduta al sito in una determinata sezione,
+    //a seconda del tipo di ruolo che ha
+
 
     public function hasRole($role) {
         $role = (array)$role;

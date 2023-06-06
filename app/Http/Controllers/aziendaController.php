@@ -1,148 +1,129 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\aziendaRequest;
+use App\Http\Requests\newAziendaRequest;
 use App\Models\Azienda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Termwind\Components\Dd;
+
 
 class aziendaController extends Controller
 {
-    public function listaAziende()
-    {
-        return view('listaAziende');
+    public function listaAziende(){
+        $aziende=DB::select('select * from aziendas');
+        return view('CRUDAzienda/listaAziende', ['listaAziende'=>$aziende]);
     }
 
-    public function modificaAzienda()
-    {
-        return view('modificaAzienda');
+
+    public function modificaAzienda(Request $request){
+        $azienda=DB::Table('aziendas')
+            ->where('idAzienda', $request->idAzienda)->get();
+        $option= 'edit';
+        return view('CRUDAzienda/aziendaDesigner', ['azienda'=>$azienda], ['option'=>$option]);
     }
 
-    public function visualizzaAzienda()
-    {
-        return view('azienda');
+
+    public function aziendaCreator(){
+        return view('CRUDAzienda/aziendaDesigner', ['option'=>'create']);
     }
 
-    public function creaAzienda()
-    {
-        return view('creaAzienda');
+    public function visualAzienda(Request $request){
+        $info=DB::Table('aziendas')
+            ->where('idAzienda', $request->idAzienda)->get();
+        return view('CRUDAzienda/azienda',['info'=> $info]);
     }
 
-    public function modificaAziendaPost(Request $request)
-    {
-        $request->validate(['id']);
-        $azienda = null;
+    public function eliminaAzienda(Request $request){
+        $logo= Azienda::where('idAzienda',$request->idAzienda)->select('logo')->get();
+        DB::delete('delete from aziendas where idAzienda = ?',[$request->idAzienda]);
+        unlink('images/'.$logo[0]->logo);
+        return redirect(route('listaAziende'));
+    }
 
-        $data['id'] = $request->id;
-        $info = Azienda::all();
-        for ($i = 0; $i <= sizeof($info) - 1; $i++) {
-            if ($info[$i]['id'] == $data['id']) {
-                $azienda = $info[$i];
-            }
+    public function editAzienda(aziendaRequest $request)
+    {
+
+        /*$logoAttuale=DB::Table('aziendas')
+            ->select('logo')
+            ->where('idAzienda',$request->idAzienda)->get();*/
+
+
+        $data['idAzienda'] = $request->idAzienda;
+        $data['ragioneSociale'] = $request->ragioneSociale;
+        $data['nomeAzienda'] = $request->nomeAzienda;
+        $data['localizzazione'] = $request->localizzazione;
+        $logo= Azienda::where('idAzienda',$data['idAzienda'])->select('logo')->get();
+
+        if ($request->logo){
+            $logoName = time().'.'.$request->logo->extension();
+            $data['logo'] = $logoName;
+            $request->logo->move(public_path('images'), $logoName);
+            unlink('images/'.$logo[0]->logo);
+        } else{
+            $data['logo']=$logo[0]->logo;
         }
 
-        return redirect()->intended(route('modificaAzienda'))->with('azienda', $azienda);
+        $data['tipologia'] = $request->tipologia;
+        $data['descrizioneAzienda'] = $request->descrizioneAzienda;
+
+        Azienda::where('idAzienda',$data['idAzienda'])->update($data);
+
+
+        return redirect(route('listaAziende'));
     }
 
-    public function visualizzaAziendaPost(Request $request)
+    /*public function creaAzienda(Request $request)
     {
-        $request->validate(['id']);
-
-        $data['id'] = $request->id;
-
-        $info = Azienda::all();
-        $azienda = $info[0];
-
-        for ($i = 0; $i <= sizeof($info)-1; $i++) {
-            if ($info[$i]['id']==$data['id']) {
-                $azienda=$info[$i];
-            }
-        }
-
-        return redirect()->intended(route('visualizzaAzienda'))->with('azienda', $azienda);
-    }
-
-    public function listaAziendePost(Request $request)
-    {
-        $request->validate(['id']);
-
-        $data['id'] = $request->id;
-
-        $info = Azienda::all();
-        $azienda = $info[0];
-
-        for ($i = 0; $i <= sizeof($info) - 1; $i++) {
-            if ($info[$i]['id'] == $data['id']) {
-                $azienda = $info[$i];
-            }
-        }
-
-        return redirect()->intended(route('listaAziende'))->with('$azienda', $azienda);
-    }
-
-    public function creaAziendaPost(Request $request)
-    {
-
-        $request->validate([
-            'id',
-            'ragioneSociale',
-            'localizzazione',
-            'nomeAzienda',
-            'logo',
-            'tipologia',
-            'descrizioneAzienda',
+        $validator = Validator::make($request->all(),[
+            'username' ,
+            'password' ,
         ]);
 
-        $data['id'] = $request->id;
+        $logoName = time().'.'.$request->logo->extension();
         $data['ragioneSociale'] = $request->ragioneSociale;
         $data['localizzazione'] = $request->localizzazione;
         $data['nomeAzienda'] = $request->nomeAzienda;
-        $data['logo'] = $request->logo;
+        $data['logo'] = $logoName;
         $data['tipologia'] = $request->tipologia;
         $data['descrizioneAzienda'] = $request->descrizioneAzienda;
-        $azienda = Azienda::create($data);
+        Azienda::create($data);
+
+        $request->logo->move(public_path('images'), $logoName);
 
         return redirect(route('listaAziende'));
 
-    }
+    }*/
 
-public function modificaAziendaFinale(Request $request)
-{
 
-    $request->validate([
-        'id',
-        'ragioneSociale',
-        'nomeAzienda',
-        'localizzazione',
-        'logo',
-        'tipologia',
-        'descrizioneAzienda',
-    ]);
-
-    $data['id'] = $request->id;
-    $data['ragioneSociale'] = $request->ragioneSociale;
-    $data['nomeAzienda'] = $request->nomeAzienda;
-    $data['localizzazione'] = $request->localizzazione;
-    $data['logo'] = $request->logo;
-    $data['tipologia'] = $request->tipologia;
-    $data['descrizioneAzienda'] = $request->descrizioneAzienda;
-
-    Azienda::where('id',$data['id'])->update($data);
-    return redirect(route('listaAziende'));
-}
-
-    public function eliminaAzienda(Request $request)
+    public function creaAzienda(newAziendaRequest $request)
     {
+        $logoName = time().'.'.$request->logo->extension();
+        $data['ragioneSociale'] = $request->ragioneSociale;
+        $data['localizzazione'] = $request->localizzazione;
+        $data['nomeAzienda'] = $request->nomeAzienda;
+        $data['logo'] = $logoName;
+        $data['tipologia'] = $request->tipologia;
+        $data['descrizioneAzienda'] = $request->descrizioneAzienda;
+        Azienda::create($data);
 
-        $request->validate([
-            'id'
-        ]);
-
-        $data['id'] = $request->id;
-
-        Azienda::where('id',$data['id'])->delete();
+        $request->logo->move(public_path('images'), $logoName);
 
         return redirect(route('listaAziende'));
+
     }
 
+    public function deleteImage(string $path){
+        if (file_exists(public_path($path))) {
+            unlink(public_path($path));
+        } else {
+            dd("File doesn't exist");
+        }
 
+    }
 }

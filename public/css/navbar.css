@@ -25,11 +25,14 @@ nav {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    position:relative;
+    right:15px;
+
 
 }
 
 .navbar-right a:last-child{
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .navbar-right a:hover {

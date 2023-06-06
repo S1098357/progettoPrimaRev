@@ -1,86 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 @extends('layout.layout')
 @section('customCss')
     <link rel="stylesheet" type="text/css" href="{{URL('css\signup.css') }}">
 @endsection
 
 @section('content')
+    <div class="container">
+        <table class="register-table">
+            <tr>
+                <td>
+                    <h1>Registrazione</h1>
+                    <br>
 
-    <section class="container">
-        <div class="mt-5">
-            @if($errors->any())
-                <div>
-                    <!-- Eventualmente da togliere dopo il secondo endif -->
-                    @foreach($errors->all() as $error)
-                        <div class="alert alert-danger">{{$error}}</div>
-                    @endforeach
-                </div>
-            @endif
+                    <form method="POST" action="{{ route('signupPost') }}">
+                        @csrf
+                        <div>
+                            <label for="username">Username:</label>
+                            <br>
+                            <br>
+                            <input type="text" name="username" id="username" value="{{ old('username') }}" autofocus>
+                            @if ($errors->first('username'))
+                                <ul class="erroreUsername">
+                                    @foreach ($errors->get('username') as $message)
+                                        <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        <br><br>
+                        <div class="column">
+                            <div>
+                                <label for="password">Password:</label>
+                                <br>
+                                <br>
+                                <input type="password" name="password" id="password">
+                                @if ($errors->first('password'))
+                                    <ul class="errore">
+                                        @foreach ($errors->get('password') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
 
-            @if(session()->has('Errore'))
-                    <div class="alert alert-danger">{{session('Errore')}}</div>
-                @endif
-        </div>
-        <header>Registrati</header>
-        <form action="{{route('signupPost')}}" method="POST" class="form">
-            @csrf
-            <div class="input-box">
-                <label>Username</label>
-                <input type="text" placeholder="Inserisci lo Username" required name="username"/>
-            </div>
-            <div class="column">
-                <div class="input-box">
-                    <label>Password</label>
-                    <input type="password" placeholder="Inserisci la password" required name="password" />
-                </div>
-                <div class="input-box">
-                    <label>Email</label>
-                    <input type="email" placeholder="Inserisci l'email" required name="email"/>
-                </div>
-            </div>
-            <div class="column">
-                <div class="input-box">
-                    <label>Nome</label>
-                    <input type="text" placeholder="Inserisci il nome" required name="nome"/>
-                </div>
-                <div class="input-box">
-                    <label>Cognome</label>
-                    <input type="text" placeholder="Inserisci il cognome" required name="cognome" />
-                </div>
-            </div>
-            <div class="column">
-                <div class="input-box">
-                    <label>Telefono</label>
-                    <input type="number" minlength="10" maxlength="10" placeholder="Inserisci il numero di telefono" required name="telefono"/>
-                </div>
-                <div class="input-box">
-                    <label>Data di Nascita</label>
-                    <input type="date" placeholder="Inserisci la data di nascita" required name="datadinascita"/>
-                </div>
-            </div>
-            <div class="gender-box">
-                <h3>Genere</h3>
-                <div class="gender-option">
-                    <div class="gender">
-                        <input type="radio" id="Uomo" name="genere" value="Uomo" checked/>
-                        <label for="Uomo">Uomo</label>
-                    </div>
-                    <div class="gender">
-                        <input type="radio" id="Donna" name="genere" value="Donna"/>
-                        <label for="Donna">Donna</label>
-                    </div>
-                    <div class="gender">
-                        <input type="radio" id="Other" name="genere" value="Non Definito" />
-                        <label for="Other">Non Definito</label>
-                    </div>
-                </div>
-            </div>
+                            <div>
+                                <label for="password">Conferma Password:</label>
+                                <br>
+                                <br>
+                                <input type="password" name="password_confirmation" id="password_confirmation">
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="column">
+                            <div>
+                                <label for="email">Email:</label>
+                                <br>
+                                <br>
+                                <input type="email" name="email" id="email" value="{{ old('email') }}" >
+                                @if ($errors->first('email'))
+                                    <ul class="errore">
+                                        @foreach ($errors->get('email') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                            <div>
+                                <label for="telefono">Telefono:</label>
+                                <br><br>
+                                <input type="tel" name="telefono" id="telefono" value="{{ old('telefono') }}">
+                                @if ($errors->first('telefono'))
+                                    <ul class="errore">
+                                        @foreach ($errors->get('telefono') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="column">
+                            <div>
+                                <label for="nome">Nome:</label>
+                                <br><br>
+                                <input type="text" name="nome" id="nome" value="{{ old('nome') }}" >
+                                @if ($errors->first('nome'))
+                                    <ul class="errore">
+                                        @foreach ($errors->get('nome') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                            <div>
+                                <label for="cognome">Cognome:</label>
+                                <br><br>
+                                <input type="text" name="cognome" id="cognome" value="{{ old('cognome') }}" >
+                                @if ($errors->first('cognome'))
+                                    <ul class="errore">
+                                        @foreach ($errors->get('cognome') as $message)
+                                            <li>{{ $message }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="column">
+                        <div>
+                            <label for="DatadiNascita">Data di nascita:</label>
+                            <br><br>
+                            <input type="date" name="datadinascita" id="dataDiNascita" value="{{ old('dataDiNascita') }}" >
+                            @if ($errors->first('datadinascita'))
+                                <ul class="errore">
+                                    @foreach ($errors->get('datadinascita') as $message)
+                                        <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="genere">Genere:</label>
+                            <br><br>
+                            <select name="genere" id="genere" required>
+                                <option value="male" {{ old('genere') === 'male' ? 'selected' : '' }}>Maschio</option>
+                                <option value="female" {{ old('genere') === 'female' ? 'selected' : '' }}>Femmina</option>
+                                <option value="other" {{ old('genere') === 'other' ? 'selected' : '' }}>Altro</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="button-cell">
+                            <button type="submit" class="btn-primary">Registrati</button>
+                        </div>
+                    </form>
 
-
-            </div>
-            <button>Submit</button>
-        </form>
-    </section>
+                    <a href="{{ route('login') }}" id="login-link">Hai già un account? Accedi qui.</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <br>
 @endsection
 </html>

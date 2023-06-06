@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\profileRequest;
+use App\Http\Requests\staffRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,7 @@ class staffController extends Controller
             ->where('role', 'staff')->get();
         $utenti=DB::Table('users')
             ->where('role', 'user')->get();
-        return view('listaStaff', ['listaStaff'=>$staff],['listaUtenti'=>$utenti]);
+        return view('CRUDStaff/listaStaff', ['listaStaff'=>$staff],['listaUtenti'=>$utenti]);
     }
 
 
@@ -23,20 +25,20 @@ class staffController extends Controller
         $staff=DB::Table('users')
             ->where('id', $request->id)->get();
         $option= 'edit';
-        return view('staffDesigner', ['staff'=>$staff], ['option'=>$option]);
+        return view('CRUDStaff/staffDesigner', ['staff'=>$staff], ['option'=>$option]);
     }
 
 
     public function staffCreator(){
-        return view('staffDesigner', ['option'=>'create']);
+        return view('CRUDStaff/staffDesigner', ['option'=>'create']);
     }
 
     public function eliminaStaff(Request $request){
         DB::delete('delete from users where id = ?',[$request->id]);
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
     }
 
-    public function editStaff(Request $request)
+    public function editStaff(profileRequest $request)
     {
 
         $request->validate([
@@ -61,22 +63,11 @@ class staffController extends Controller
         $data['role']='staff';
 
         User::where('id',$request->id)->update($data);
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
     }
 
-    public function creaStaff(Request $request)
+    public function creaStaff(profileRequest $request)
     {
-
-        $request->validate([
-            'username',
-            'password',
-            'email',
-            'nome',
-            'cognome',
-            'telefono',
-            'datadinascita',
-            'genere'
-        ]);
 
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);
@@ -86,10 +77,10 @@ class staffController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        $data['role']='staff';
-        $Coupon = User::create($data);
+        $data['role'] = "staff";
+        User::create($data);
 
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
 
     }
 

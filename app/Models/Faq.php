@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Faq extends Model
 {
     protected $table = 'Faq';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id',
         'domanda',
         'risposta'
     ];
+    public $timestamps = false;
 
 }

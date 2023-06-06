@@ -6,8 +6,13 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rules;
+
+
+
 
 class LoginRequest extends FormRequest
 {
@@ -26,12 +31,23 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
+
+    //A seconda del vincolo che viene violato, viene restituito un messaggio di errore
+
     public function rules()
     {
         return [
-            'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'username' => 'required|string|min:8',
+            'password' => 'required|string|min:8',
         ];
+    }
+
+    public function messages(){
+        return [
+            'required' => 'il campo :attribute è necessario',
+            'min' => 'Il campo :attribute deve avere almeno 8 caratteri'
+        ];
+
     }
 
     /**

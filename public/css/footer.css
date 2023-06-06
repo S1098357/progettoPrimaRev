@@ -5,6 +5,7 @@
     width: 100%;
     background-color: #A4D0A4;
     color: #27896d;
+    z-index: 3;
 }
 .footer h2{
     color: #27896d;
@@ -16,7 +17,6 @@
     position: absolute;
     right: 80%;
     top: 50%;
-    color: #27896d;
 }
 .footer e2{
     color: white;
@@ -24,7 +24,6 @@
     position: absolute;
     right: 55%;
     top: 50%;
-    color: #27896d;
 }
 .footer e3{
     color: white;
@@ -32,7 +31,6 @@
     position: absolute;
     right: 30%;
     top: 50%;
-    color: #27896d;
 }
 .footer e4{
     color: white;
@@ -40,7 +38,7 @@
     position: absolute;
     right: 5%;
     top: 50%;
-    color: #27896d;
+
 }
 
 .footer left{

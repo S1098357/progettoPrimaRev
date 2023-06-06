@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\SignUpRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -10,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use mysql_xdevapi\Session;
 
 class loginController extends Controller
@@ -25,25 +27,45 @@ class loginController extends Controller
         return view('signup');
     }
 
+    function errors(){
+        return "Username o Password Errati";
+    }
     function loginPost(LoginRequest $request)
     {
+
         $request->authenticate();
 
+
+
+        $validator = Validator::make($request->all(),[
+            'username' ,
+            'password' ,
+        ]);
+
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+
         $request->session()->regenerate();
+
+
 
         /**
          * Redirezione su diverse Home Page in base alla classe d'utenza.
          */
-//        return redirect()->intended(RouteServiceProvider::HOME);
-
+//
+        //Prendo il ruolo dell'utente autenticato e lo indirizzo in una determinata pagina a seconda della classe di utenza
         $role = auth()->user()->role;
         switch ($role) {
-            case 'admin': return redirect()->route('admin');
+            case 'admin': return redirect()->route('home');
                 break;
             case 'user': return redirect()->route('home');
                 break;
-            default: return redirect('catalogo');
+            case 'staff':return redirect()->route('home');
+
+           // default: return redirect('catalogo');
         }
+
 
     }
 
@@ -57,18 +79,10 @@ class loginController extends Controller
         return redirect('/');
     }
 
-    function signupPost(Request $request)
+    //function signupPost(Request $request)
+    function signupPost(SignUpRequest $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email'=>'required',
-            'password' => 'required',
-            'telefono' => 'required',
-            'datadinascita' => 'required',
-            'username' => 'required',
-            'cognome' => 'required',
-            'genere' => 'required'
-        ]);
+
 
         $data['nome'] = $request->nome;
         $data['email']=$request->email;
@@ -91,10 +105,15 @@ class loginController extends Controller
 
     }
 
-    function logout(Request $request):RedirectResponse{
+    function logout(Request $request):RedirectResponse
+
+    {
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+
         return redirect(route('home'));
     }
 

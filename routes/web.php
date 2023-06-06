@@ -1,18 +1,14 @@
 <?php
 
 use App\Http\Controllers\aziendaController;
-use App\Http\Controllers\aziendaControllerDiego;
-use App\Http\Controllers\couponController;
 use App\Http\Controllers\faqController;
 use App\Http\Controllers\filterController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\promozioniController;
-use App\Http\Controllers\promozioniNuovoController;
 use App\Http\Controllers\publicController;
 use App\Http\Controllers\staffController;
-use App\Http\Controllers\statisticheController;
-use App\Models\Coupon;
+use App\Http\Controllers\statsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,108 +22,89 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Alcune rotte dell'area pubblica
 Route::get('/', [publicController::class, 'home'])->name('home');
-
-
 Route::get('/home', [publicController::class, 'home'])->name('home');
+//Route::get('/info', [publicController::class, 'info'])->name('info');
 
-Route::get('/test', [publicController::class, 'test'])->name('test');
-
-Route::get('/catalogo', [publicController::class, 'catalogo'])->name('catalogo');
-
-Route::get('/info', [publicController::class, 'info'])->name('info');
-Route::get('/faq', [publicController::class, 'faq'])->name('faq');
-
+//Rotte per il login, signup e logout
 Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::post('/login', [loginController::class, 'loginPost'])->name('loginPost');
-
 Route::get('/signup', [loginController::class, 'signup'])->name('signup');
 Route::post('/signup', [loginController::class, 'signupPost'])->name('signupPost');
-
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 
-Route::get('/filtri', [filterController::class, 'filtri'])->name('filtriPost');
-Route::get('/filter', [filterController::class, 'filter'])->name('filtri');
-Route::get('/filter2', [filterController::class, 'filter2'])->name('filtri2');
-Route::get('/filter3', [filterController::class, 'filter3'])->name('filtri3');
+//Rotta per i filtri
+Route::get('/listaPromozioni/filtered', [filterController::class, 'filter'])->name('filtri');
 
 
-Route::get('/profile', [publicController::class, 'profile'])->name('Profile');
-
-Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo');
-
-Route::get('/Logout', [publicController::class, 'logout'])->name('Logout');
-
-Route::post('/modificaProfilo', [profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
-
-Route::get('/promozioni', [publicController::class, 'Promozioni'])->name('Promozioni');
-
-Route::get('/visualizzaPromozione', [publicController::class, 'visualizzaPromozione'])->name('visualizzaPromozione');
-
-Route::post('/visualizzaPromozionePost', [promozioniController::class, 'visualizzaPromozionePost'])->name('visualizzaPromozionePost');
-
-Route::post('/creaPromozionePost', [promozioniController::class, 'creaPromozionePost'])->name('creaPromozionePost');
-
-Route::post('/modificaPromozionePost', [promozioniController::class, 'modificaPromozionePost'])->name('modificaPromozionePost');
-
-Route::post('/eliminaPromozione', [promozioniController::class, 'eliminaPromozione'])->name('eliminaPromozione');
-
-Route::post('/modificaPromozioneFinale', [promozioniController::class, 'modificaPromozioneFinale'])->name('modificaPromozioneFinale');
-
-Route::get('/listaAziende', [aziendaController::class, 'listaAziende'])->name('listaAziende');
-
-Route::get('/listaAziendePost', [aziendaController::class, 'listaAziendePost'])->name('listaAziendePost');
-
-Route::post('/modificaAziendaPost', [aziendaController::class, 'modificaAziendaPost'])->name('modificaAziendaPost');
-
-Route::get('/modificaAzienda', [aziendaController::class, 'modificaAzienda'])->name('modificaAzienda');
-
-Route::post('/modificaAziendaFinale', [aziendaController::class, 'modificaAziendaFinale'])->name('modificaAziendaFinale');
-
-Route::post('/creaAzienda', [aziendaController::class, 'creaAzienda'])->name('creaAzienda');
-
-Route::post('/creaAziendaPost', [aziendaController::class, 'creaAziendaPost'])->name('creaAziendaPost');
-
-Route::get('/visualizzaAzienda', [aziendaController::class, 'visualizzaAzienda'])->name('visualizzaAzienda');
-
-Route::post('/visualizzaAziendaPost', [aziendaController::class, 'visualizzaAziendaPost'])->name('visualizzaAziendaPost');
-
-Route::post('/eliminaAzienda', [aziendaController::class, 'eliminaAzienda'])->name('eliminaAzienda');
-
-Route::get('/couponSingolo', [publicController::class, 'couponSingolo'])->name('couponSingolo');
-Route::get('/listaStaff', [publicController::class, 'listaStaff'])->name('listaStaff');
-
-Route::get('/listaPromozioni', [promozioniNuovoController::class, 'listaPromozioni'])->name('listaPromozioni');
-Route::get('/visualPromozione', [promozioniNuovoController::class, 'visualPromozione'])->name('visualPromozione');
-Route::post('/eliminaPromozione', [promozioniNuovoController::class, 'eliminaPromozione'])->name('eliminaPromozione');
-Route::post('/editPromozione', [promozioniNuovoController::class, 'editPromozione'])->name('editPromozione');
-Route::post('/creaPromozione', [promozioniNuovoController::class, 'creaPromozione'])->name('creaPromozione');
-Route::get('/promozioneCreator', [promozioniNuovoController::class, 'promozioneCreator'])->name('promozioneCreator');
-Route::get('/modificaPromozione', [promozioniNuovoController::class, 'modificaPromozione'])->name('modificaPromozione');
+//Rotte per il CRUD delle promozioni
+Route::get('/listaPromozioni', [promozioniController::class, 'listaPromozioni'])->name('listaPromozioni');
+Route::get('/visualPromozione', [promozioniController::class, 'visualPromozione'])->name('visualPromozione');
+Route::post('/eliminaPromozione', [promozioniController::class, 'eliminaPromozione'])->name('eliminaPromozione')
+    ->middleware('can:isStaff');
+Route::post('/editPromozione', [promozioniController::class, 'editPromozione'])->name('editPromozione')
+    ->middleware('can:isStaff');
+Route::post('/creaPromozione', [promozioniController::class, 'creaPromozione'])->name('creaPromozione')
+    ->middleware('can:isStaff');
+Route::get('/promozioneCreator', [promozioniController::class, 'promozioneCreator'])->name('promozioneCreator')
+    ->middleware('can:isStaff');
+Route::get('/modificaPromozione', [promozioniController::class, 'modificaPromozione'])->name('modificaPromozione')
+    ->middleware('can:isStaff');
 
 
-Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaStaff');
-Route::get('/eliminaStaff', [staffController::class, 'eliminaStaff'])->name('eliminaStaff');
-Route::post('/editStaff', [staffController::class, 'editStaff'])->name('editStaff');
-Route::post('/creaStaff', [staffController::class, 'creaStaff'])->name('creaStaff');
-Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('staffCreator');
-Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff');
+//Rotte per il profilo
+Route::get('/profile', [profileController::class, 'profilo'])->name('profile');
+Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
+    ->middleware('can:isUserOrisStaff');
+/*Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
+    ->middleware('can:isStaff');*/
+Route::post('/modificaProfilo',[profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
 
-Route::get('/salvaCoupon', [couponController::class, 'salvaCoupon'])->name('salvaCoupon');
+//Rotte per il CRUD delle aziende
+Route::get('/listaAziende', [aziendaController::class, 'listaAziende'])->name('listaAziende'); //Lista delle Aziende
+Route::get('/azienda', [aziendaController::class, 'visualAzienda'])->name('azienda'); //Visualizzazione Azienda Singola
+#Route::post('/aziendaDiego', [aziendaController::class, 'visualAzienda'])->name('aziendaDiego');
+Route::get('/aziendaCreator', [aziendaController::class, 'aziendaCreator'])->name('aziendaCreator')
+    ->middleware('can:isAdmin'); //va alla pagina di creazione dell'azienda
+Route::post('/aziendaCreator', [aziendaController::class, 'creaAzienda'])->name('createAzienda')
+    ->middleware('can:isAdmin'); //crea l'azienda
+Route::post('/aziendaDelete/{idAzienda}', [aziendaController::class, 'eliminaAzienda'])->name('aziendaDelete')
+    ->middleware('can:isAdmin'); //Eliminazione Azienda
+Route::post('/saveAzienda/{idAzienda}', [aziendaController::class, 'editAzienda'])->name('saveAzienda')
+    ->middleware('can:isAdmin');//salva le modifiche per l'azienda (sarebbe (ModificaAziendaDiego in metodo Post)
+Route::get('/modificaAzienda', [aziendaController::class, 'modificaAzienda'])->name('modificaAzienda')
+    ->middleware('can:isAdmin'); //va alla pagina di modifica dell'azienda
 
-Route::get('/statistiche', [statisticheController::class, 'statistiche'])->name('statistiche');
+//faq
+Route::get('/faq', [faqController::class, 'faq'])->name('faq');
+Route::get('/faqedit/{id}', [faqController::class, 'faqedit'])->name('faqedit')->middleware('can:isAdmin');
+Route::get('/faqdelete/{id}', [faqController::class, 'faqdelete'])->name('faqdelete')->middleware('can:isAdmin');
+Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')->middleware('can:isAdmin');
+Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('can:isAdmin');
 
-Route::get('/couponSingolo2', [publicController::class, 'couponSingolo2'])->name('couponSingolo2');
+//Statistiche
+Route::get('/statistiche',[statsController::class, 'stats'])->name('statistiche')
+    ->middleware('can:isAdmin');
+
+//Promozione Utente liv1
+Route::get('/salvaCoupon', [promozioniController::class, 'salvaCoupon'])->name('salvaCoupon')
+    ->middleware('can:isUser');
+Route::get('/couponSalvati', [promozioniController::class, 'couponSalvati'])->name('couponSalvati')
+    ->middleware('can:isUser');
 
 
-
-
-
-
-
-
-
-
-
-
+//CRUDStaff
+Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaUtenti')
+    ->middleware('can:isAdmin');
+Route::get('/eliminaStaff', [staffController::class, 'eliminaStaff'])->name('eliminaStaff')
+    ->middleware('can:isAdmin');
+Route::post('/editStaff', [staffController::class, 'editStaff'])->name('editStaff')
+    ->middleware('can:isAdmin');
+Route::post('/creaStaff', [staffController::class, 'creaStaff'])->name('creaStaff')
+    ->middleware('can:isAdmin');
+Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('staffCreator')
+    ->middleware('can:isAdmin');
+Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff')
+    ->middleware('can:isAdmin');

@@ -14,24 +14,26 @@
         </div>
         <div class="navbar-right">
             @include('navItem/onlyRoute', ['route'=>'home'], ['value'=>'Home'])
-            @include('navItem/onlyRoute', ['route'=>'catalogo'], ['value'=>'Catalogo'])
-            @include('navItem/onlyRoute', ['route'=>'info'], ['value'=>'Info Aziende'])
+            @include('navItem/onlyRoute', ['route'=>'listaPromozioni'], ['value'=>'Catalogo'])
+            @include('navItem/onlyRoute', ['route'=>'listaAziende'], ['value'=>'Info Aziende'])
             @include('navItem/onlyRoute', ['route'=>'faq'], ['value'=>'FAQ'])
+
 
             @if(!Auth::check())
                 @include('navItem/onlyRoute', ['route'=>'login'], ['value'=>'Login'])
                 @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
+            @elseif (Auth::User()->role=='user' or Auth::User()->role=='staff')
+                @include('navItem/onlyRoute', ['route'=>'profile'], ['value'=>'Profilo'])
+
+
+            @elseif((Auth::User()->role)=='admin')
+                @include('navItem/onlyRoute', ['route'=>'listaUtenti'], ['value'=>'Gestione Utenti'])
+                    @include('navItem/onlyRoute', ['route'=>'statistiche'], ['value'=>'Statistiche'])
             @endif
 
-            @if(isset(Auth::User()->nome))
-                @if((Auth::User()->role)=='user')
-                    @include('navItem/onlyRoute', ['route'=>'Profile'], ['value'=>'Profilo'])
-                    @include('navItem/onlyRoute', ['route'=>'modificaProfilo'], ['value'=>'Modifica Profilo'])
-                @elseif(Auth::User()->role=='staff')
-                    @include('navItem/onlyRoute', ['route'=>'Promozioni'], ['value'=>'Promozioni'])
-                @endif
+
                 @include('navItem/logout')
-            @endif
+
 
         </div>
 

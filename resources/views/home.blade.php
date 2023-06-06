@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 @extends('layout.layout')
+@section('customCss')
+    <link rel="stylesheet" type="text/css" href="{{URL('public\css\home.css') }}">
+@endsection
 @section('content')
-
 
     <h1>Home</h1>
     <div class="zone">
@@ -21,8 +23,10 @@
 
     </div>
 
-@endsection
 
+
+
+@endsection
 
 </html>
 

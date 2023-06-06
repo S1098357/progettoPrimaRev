@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +25,27 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //Da decidere dove utilizzare le regole di autorizzazione
+        //Utiliziamo i middleware nelle routes
+
+        Gate::define('isAdmin', function ($user) {
+            return $user->hasRole('admin');
+        });
+
+        Gate::define('isUser', function ($user) {
+            return $user->hasRole('user');
+        });
+
+        Gate::define('isStaff', function ($user) {
+            return $user->hasRole('staff');
+        });
+
+        Gate::define('isUserOrisStaff', function ($user) {
+            return $user->hasRole(['user', 'staff']);
+        });
+
+        Gate::define('show-discount', function ($user) {
+            return $user->hasRole(['user', 'admin']);
+        });
     }
 }

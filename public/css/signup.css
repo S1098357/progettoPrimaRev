@@ -1,123 +1,112 @@
-/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
 body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    background-color: #F7E1AE;
+    font-size: 1rem;
+}
 
-}
-.container {
-    position: relative;
-    max-width: 700px;
-    width: 100%;
-    background: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-.container header {
-    font-size: 1.5rem;
-    color: #333;
-    font-weight: 500;
+h1 {
+    font-weight: 300;
     text-align: center;
 }
-.container .form {
-    margin-top: 30px;
-}
-.form .input-box {
-    width: 100%;
-    margin-top: 10px;
-}
-.input-box label {
-    color: #333;
-    font-size: 15px;
-}
-.form :where(.input-box input, .select-box) {
-    position: relative;
-    height: 30px;
-    width: 100%;
-    outline: none;
-    font-size: 1rem;
-    color: #707070;
-    margin-top: 8px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 0 15px;
-}
-.input-box input:focus {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-}
-.form .column {
+
+.container {
     display: flex;
-    column-gap: 15px;
-}
-.form .gender-box {
-    margin-top: 20px;
-}
-.gender-box h3 {
-    color: #333;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 8px;
-}
-.form :where(.gender-option, .gender) {
-    display: flex;
+    justify-content: center;
     align-items: center;
-    column-gap: 50px;
-    flex-wrap: wrap;
+    height: 950px;
 }
-.form .gender {
-    column-gap: 5px;
+
+.column {
+    display: flex;
+    column-gap: 40px;
 }
-.gender input {
-    accent-color: rgb(130, 106, 251);
+.register-table {
+    width: 500px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
-.form :where(.gender input, .gender label) {
-    cursor: pointer;
+
+.register-table td {
+    padding: 10px;
 }
-.gender label {
-    color: #707070;
+
+.register-table input[id="username"]{
+    width: 460px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: medium;
+    height: 20px;
 }
-.address :where(input, .select-box) {
-    margin-top: 15px;
+
+.register-table input[type="password"],
+.register-table input[id="confermaPassword"],
+.register-table input[id="email"],
+.register-table input[id="telefono"],
+.register-table input[id="nome"],
+.register-table input[id="cognome"],
+.register-table input[id="dataDiNascita"]
+{
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-.select-box select {
-    height: 100%;
+.register-table select {
     width: 100%;
-    outline: none;
-    border: none;
-    color: #707070;
-    font-size: 1rem;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-.form button {
-    height: 45px;
-    width: 100%;
+
+.register-table .button-cell {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.register-table .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #04AA6D;
     color: #fff;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-top: 30px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+}
+
+.register-table .btn-primary:hover {
+    background-color: #04AA6D;
+}
+
+#login-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #04AA6D;
+    text-decoration: none;
     transition: all 0.2s ease;
-    background: #04AA6D;
-    border-radius: 10px;
+}
+
+#login-link:hover {
+    color: #04AA6D;
+}
+
+.erroreUsername{
+    color: #f93d00;
+    font-size: 12px;
+    position: relative;
+    right:5%;
+    margin-bottom: 2px;
+}
+
+.errore {
+    color: #f93d00;
+    font-size: 12px;
+    position: relative;
+    right:10%;
+    margin-bottom: 2px;
 }
 
 
-/*Responsive*/
-@media screen and (max-width: 500px) {
-    .form .column {
-        flex-wrap: wrap;
-    }
-    .form :where(.gender-option, .gender) {
-        row-gap: 15px;
-    }
-}
