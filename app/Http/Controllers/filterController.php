@@ -21,6 +21,8 @@ class filterController extends Controller
                     '<div class="promozione">
              <p>Nome Offerta: '.$filteredCoupon->nomePromozione.'</p>
              <p>Oggetto Offerta:'.$filteredCoupon->oggetto.'</p>
+              <div class="sconto"><p id="scontistica"> Scontistica:' . $filteredCoupon->scontistica.' </p></div>
+                    <div><p id="nomeAzienda"> Nome Azienda: '.$filteredCoupon->nomeAzienda.' </p></div>
             </div>';
             }
             return response($output);
@@ -32,6 +34,8 @@ class filterController extends Controller
                     '<div class="promozione">
              <p>Nome Offerta: ' . $filteredCoupon->nomePromozione . '</p>
              <p>Oggetto Offerta:' . $filteredCoupon->oggetto . '</p>
+              <div class="sconto"><p id="scontistica"> Scontistica:' . $filteredCoupon->scontistica.' </p></div>
+                    <div><p id="nomeAzienda"> Nome Azienda: '.$filteredCoupon->nomeAzienda.' </p></div>
             </div>';
             }
             return response($output);
@@ -52,6 +56,8 @@ class filterController extends Controller
                     '<div class="promozione">
                    <p>Nome Offerta: ' . $coupon->nomePromozione . '</p>
                    <p>Oggetto Offerta:' . $coupon->oggetto . '</p>
+                   <div class="sconto"><p id="scontistica"> Scontistica:' . $coupon->scontistica.' </p></div>
+                    <div><p id="nomeAzienda"> Nome Azienda: '.$coupon->nomeAzienda.' </p></div>
                 </div>';
             }
         }
