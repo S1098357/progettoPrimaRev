@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Azienda;
+use App\Models\emissione_coupon;
 use App\Models\Promozione;
 use DateTime;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
@@ -92,6 +94,18 @@ class filterController extends Controller
         }
         if ($request->ricercaAzienda == '' && $request->ricercaParola == '') {
             $listaPromozioni=DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->get();
+        }
+        $listaPromozioniNonSalvate=[];
+        if (Auth::user()->role=='user'){
+            $promozioniSalvate=emissione_coupon::where('idUtente',Auth::user()->id)->get();
+            foreach ($promozioniSalvate as $promo){
+                foreach ($listaPromozioni as $promozioni){
+                    if ($promozioni->idPromozione!=$promo->idPromozione){
+                        array_push($listaPromozioniNonSalvate,$promozioni);
+                    }
+                }
+            }
+            return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioniNonSalvate]);
         }
         return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
     }
