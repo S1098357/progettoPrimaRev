@@ -23,6 +23,7 @@
                     <br><br>
                     <label for="nomeAzienda">Nome Azienda: </label>
                     @include('components.completeForm', ['parameter' => 'nomeAzienda', 'complete'=>1, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                     <label for="logo">Logo:</label>
                     <input type="file" id="logo" name="logo"><br><br>
                     @if ($errors->first('logo'))
@@ -35,10 +36,13 @@
                     @endif
                     <label for="ragioneSociale">Ragione Sociale:</label>
                     @include('components.completeForm', ['parameter' => 'ragioneSociale', 'complete'=>1, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                     <label for="localizzazione">Localizzazione:</label>
                     @include('components.completeForm', ['parameter' => 'localizzazione', 'complete'=>1, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                     <label for="tipologia">Tipologia Azienda:</label>
                     @include('components.completeForm', ['parameter' => 'tipologia', 'complete'=>1, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                     <label for="descrizioneAzienda">Descrizione Azienda:</label>
                     <textarea name="descrizioneAzienda">{{$a->descrizioneAzienda}}</textarea>
                     @if ($errors->first('descrizioneAzienda'))
@@ -47,6 +51,7 @@
                                 {{ $message }}
                             @endforeach
                         </ul>
+                        <br>
                     @endif
                     <br><br>
                     <input type="hidden" id="azienda_id" name="azienda_id" value="{{$a->idAzienda}}">
@@ -62,12 +67,15 @@
                 <center>
                 <label for="nomeAzienda">Nome Azienda: </label>
                     @include('components.completeForm', ['parameter' => 'nomeAzienda', 'complete'=>0, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                 <label for="ragioneSociale">Ragione Sociale:</label>
                     @include('components.completeForm', ['parameter' => 'ragioneSociale', 'complete'=>0, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                 <label for="localizzazione">Localizzazione:</label>
                     @include('components.completeForm', ['parameter' => 'localizzazione', 'complete'=>0, 'type'=>'text', 'page' => 'aziendaDesigner'])
-                <label for="logo">Logo:</label>
-                <input type="file" id="logo" name="logo"><br><br>
+                    <br>
+                    <label for="logo">Logo:</label>
+                <input type="file" id="logo" name="logo"><br><br><br>
                     @if ($errors->first('logo'))
                         <ul class="erroreLogo">
                             @foreach ($errors->get('logo') as $message)
@@ -75,8 +83,10 @@
                             @endforeach
                         </ul>
                     @endif
+                    <br>
                 <label for="tipologia">Tipologia di azienda:</label>
                     @include('components.completeForm', ['parameter' => 'tipologia', 'complete'=>0, 'type'=>'text', 'page' => 'aziendaDesigner'])
+                    <br>
                 <label for="descrizioneAzienda">Descrizione dell'azienda:</label>
                 <textarea id="descrizioneAzienda" name="descrizioneAzienda"></textarea>
                 @if ($errors->first('descrizioneAzienda'))
@@ -86,6 +96,7 @@
                         @endforeach
                     </ul>
                 @endif
+                    <br>
                 </center>
                 <br><br><br>
                 <input type="submit" value="Crea Azienda">

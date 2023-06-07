@@ -96,7 +96,7 @@ class filterController extends Controller
             $listaPromozioni=DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->get();
         }
         $listaPromozioniNonSalvate=[];
-        if (Auth::user()->role=='user'){
+        if (Auth::check()){
             $promozioniSalvate=emissione_coupon::where('idUtente',Auth::user()->id)->get();
             foreach ($promozioniSalvate as $promo){
                 foreach ($listaPromozioni as $promozioni){

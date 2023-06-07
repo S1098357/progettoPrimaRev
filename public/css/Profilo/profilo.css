@@ -101,3 +101,9 @@ input[type="submit"]:hover {
     margin-bottom: 5px;
 
 }
+
+select{
+    width: 25%;
+    height: 5%;
+}
+

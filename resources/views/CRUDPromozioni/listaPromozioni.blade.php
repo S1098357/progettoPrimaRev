@@ -23,8 +23,8 @@
                 <input type="text" name="ricercaAzienda" id="ricercaAzienda"/>
                 <label>Cerca parola chiave</label>
                 <input type="text" name="ricercaParola" id="ricercaParola"/>
-                <button  type="submit">Ricerca</button>
                 <button id=close-button type="button">X</button>
+                <button  type="submit">Ricerca</button>
             </div>
             </form>
         </div>

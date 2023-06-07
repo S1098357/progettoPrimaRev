@@ -115,3 +115,10 @@ input[type="submit"]:hover {
     background-color: #04AA6D;
     color: white;
 }
+
+select{
+    width: 25%;
+    height: 5%;
+}
+
+

@@ -32,7 +32,7 @@
                     @include('components.completeForm', ['parameter' => 'telefono', 'complete'=>1, 'type'=>'text', 'page' => 'modificaStaff'])
                     <label for="datadinascita">Data di nascita:</label>
                     @include('components.completeForm', ['parameter' => 'datadinascita', 'complete'=>1, 'type'=>'date', 'page' => 'modificaStaff'])
-                    <label for="genere">Genere:</label>
+                    <label for="genere" class="opzioni">Genere:</label>
                     <select id="genere" name="genere">
                         <option value="maschio">Maschio</option>
                         <option value="femmina">Femmina</option>
@@ -66,7 +66,7 @@
                 @include('components.completeForm', ['parameter' => 'telefono', 'complete'=>0, 'type'=>'tel', 'page' => 'modificaStaff'])
                 <label for="datadinascita">Data di nascita:</label>
                 @include('components.completeForm', ['parameter' => 'datadinascita', 'complete'=>0, 'type'=>'date', 'page' => 'modificaStaff'])
-                <label for="genere">Genere:</label>
+                <label for="genere" class="opzioni">Genere:</label>
                 <select id="genere" name="genere">
                     <option value="maschio">Maschio</option>
                     <option value="femmina">Femmina</option>

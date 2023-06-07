@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 //Alcune rotte dell'area pubblica
 Route::get('/', [publicController::class, 'home'])->name('home');
 Route::get('/home', [publicController::class, 'home'])->name('home');
-//Route::get('/info', [publicController::class, 'info'])->name('info');
 
 //Rotte per il login, signup e logout
 Route::get('/login', [loginController::class, 'login'])->name('login');
@@ -55,11 +54,10 @@ Route::get('/modificaPromozione', [promozioniController::class, 'modificaPromozi
 
 
 //Rotte per il profilo
-Route::get('/profile', [profileController::class, 'profilo'])->name('profile');
+Route::get('/profile', [profileController::class, 'profilo'])->name('profile')
+    ->middleware('can:isUserOrisStaff');
 Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
     ->middleware('can:isUserOrisStaff');
-/*Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
-    ->middleware('can:isStaff');*/
 Route::post('/modificaProfilo',[profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
 
 //Rotte per il CRUD delle aziende
