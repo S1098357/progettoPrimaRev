@@ -40,14 +40,15 @@
                 <div><p id="oggetto"> Oggetto Offerta: {{$promozione->oggetto}} </p></div>
                 <div><p id="nomeAzienda"> Nome Azienda: {{$promozione->nomeAzienda}} </p></div>
 
+                <div>
                 @can('isStaff')
-                    <div>
                         <div class="bottoni1"><input type="submit" value="MODIFICA" onclick="location.href='{{route('modificaPromozione', ['idPromozione'=>$promozione->idPromozione])}}';">
                         </div>
+                    @endcan
                         <div class="bottoni2"><input type="submit" value="VISUALIZZA" onclick="location.href='{{route('visualPromozione', ['idPromozione'=>$promozione->idPromozione])}}';">
                         </div>
                     </div>
-                @endcan
+
                 @can('isUser')
                     <div>
                         <button type="submit"

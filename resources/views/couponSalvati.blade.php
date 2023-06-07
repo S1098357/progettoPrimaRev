@@ -22,8 +22,12 @@
             </div>
             <div class="footer_coupon">
                 <div class="scontistica">{{$listaCoupon[$i]->scontistica}}%</div>
-                <div class="codice">Il tuo codice: {{$listaCodici[$i]}} </div>
+                <div class="codice">
+                    <p>Il tuo codice: {{$listaCodici[$i]}}</p>
+                    <p>Modalità di fruizione: {{$listaCoupon[$i]->modalità}}</p>
+                </div>
             </div>
+            <br><br><br><br>
             <hr color="#4CAF50">
         @endfor
         <center>
@@ -52,8 +56,12 @@
             </div>
             <div class="footer_coupon">
                 <div class="scontistica">{{$promo->scontistica}}%</div>
-                <div class="codice">Il tuo codice: {{$codice}} </div>
+                <div class="codice">
+                    <p>Il tuo codice: {{$codice}}</p>
+                    <p>Modalità di fruizione: {{$promo->modalità}}</p>
+                </div>
             </div>
+            <br><br><br><br>
             <hr color="#4CAF50">
         @endforeach
         <center>
