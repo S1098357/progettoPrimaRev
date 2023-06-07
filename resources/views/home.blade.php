@@ -18,7 +18,8 @@
             <p>Creare un account</p>
             <p>Accedere ad un sacco di promozioni diverse!</p>
             <p>Acquisire coupon e stamparli</p>
-
+        <br>
+        <a href="{{URL('relazione\Relazione progetto tec web.pdf')}}" target="_blank">Apri la relazione</a>
     </div>
 
 
