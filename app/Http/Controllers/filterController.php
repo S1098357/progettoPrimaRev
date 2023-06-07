@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class filterController extends Controller
 {
+    //da aggiungere il button salva coupon
     public function filter(Request $request){
         $output = "";
         if ($request->ricercaAzienda!=''&& $request->ricercaParola==''){
