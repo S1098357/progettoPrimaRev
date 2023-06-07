@@ -1,4 +1,4 @@
-$(function ricercaFiltribyNameAndWords() {
+/*$(function ricercaFiltribyNameAndWords() {
     $('#ricercaParola').on('keyup',function () {
         $value1 = $('#ricercaAzienda').val();
         $value2 = $('#ricercaParola').val();
@@ -39,7 +39,7 @@ $(function ricercaFiltribyNameAndWords() {
             }
         })
     })
-})
+})*/
 
 
 $(function aperturaFiltri() {

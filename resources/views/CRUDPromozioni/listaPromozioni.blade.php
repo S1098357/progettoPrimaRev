@@ -7,24 +7,26 @@
 @endsection
 
 @section('content')
-    <?php $info = \App\Models\Promozione::all(); ?>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{asset('js/filtri.js')}}"></script>
 
     @if (!Auth::check() or Gate::allows('isUser'))
         <div class="horizontal">
             <button id=filter-button type="button">FILTRI</button>
+            <form method="POST" action="{{route('listaPromozioni')}}">
+                @csrf
             <div id="filtri" class="filtri">
                 <p>Barra di ricerca per i filtri:</p>
                 <label>Cerca nome azienda</label>
                 <input type="text" name="ricercaAzienda" id="ricercaAzienda"/>
                 <label>Cerca parola chiave</label>
                 <input type="text" name="ricercaParola" id="ricercaParola"/>
+                <button  type="submit">Ricerca</button>
                 <button id=close-button type="button">X</button>
             </div>
+            </form>
         </div>
         <br><br><br><br><br>
     @endif

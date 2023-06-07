@@ -108,3 +108,5 @@ Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('sta
     ->middleware('can:isAdmin');
 Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff')
     ->middleware('can:isAdmin');
+
+Route::post('/listaPromozioni', [filterController::class, 'filtriVecchi'])->name('listaPromozioni');

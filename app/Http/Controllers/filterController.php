@@ -64,4 +64,33 @@ class filterController extends Controller
 
         return response($output);
     }
+
+
+    public function filtriVecchi(Request $request)
+    {
+        if ($request->ricercaAzienda != '' && $request->ricercaParola == '') {
+            $filteredCoupons = DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('nomeAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
+            $listaPromozioni = $filteredCoupons;
+            return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
+        }
+        if ($request->ricercaParola != '' && $request->ricercaAzienda == '') {
+            $filteredCoupons = Promozione::join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            $listaPromozioni = $filteredCoupons;
+            return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
+        }
+        $listaCoupon = [];
+        if ($request->ricercaParola && $request->ricercaAzienda) {
+            $filteredCouponsbyName = DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('nomeAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
+            $filteredCouponsbyWords = Promozione::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
+            foreach ($filteredCouponsbyWords as $filteredCouponbyWords) {
+                foreach ($filteredCouponsbyName as $filteredCouponbyName) {
+                    if ($filteredCouponbyName->idPromozione == $filteredCouponbyWords->idPromozione) {
+                        array_push($listaCoupon, $filteredCouponbyName);
+                    }
+                }
+            }
+        }
+        $listaPromozioni = $listaCoupon;
+        return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
+    }
 }
