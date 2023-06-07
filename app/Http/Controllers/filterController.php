@@ -72,12 +72,10 @@ class filterController extends Controller
         if ($request->ricercaAzienda != '' && $request->ricercaParola == '') {
             $filteredCoupons = DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('nomeAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
             $listaPromozioni = $filteredCoupons;
-            return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
         }
         if ($request->ricercaParola != '' && $request->ricercaAzienda == '') {
             $filteredCoupons = Promozione::join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
             $listaPromozioni = $filteredCoupons;
-            return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
         }
         $listaCoupon = [];
         if ($request->ricercaParola && $request->ricercaAzienda) {
@@ -90,8 +88,11 @@ class filterController extends Controller
                     }
                 }
             }
+            $listaPromozioni = $listaCoupon;
         }
-        $listaPromozioni = $listaCoupon;
+        if ($request->ricercaAzienda == '' && $request->ricercaParola == '') {
+            $listaPromozioni=DB::table('promozione')->join('aziendas', 'promozione.idAzienda', '=', 'aziendas.idAzienda')->get();
+        }
         return view('CRUDPromozioni/listaPromozioni', ['listaPromozioni' => $listaPromozioni]);
     }
 }
